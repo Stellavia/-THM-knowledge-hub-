@@ -7,6 +7,7 @@ This repository contains my notes and solutions from 360+ TryHackMe rooms.
 - Windows
 - Digital Forensics
 - Web
+- AI
 
 
 
