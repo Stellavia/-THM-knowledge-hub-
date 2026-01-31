@@ -76,3 +76,5 @@ This section basically explains how Large Language Models (LLMs) can become secu
 - No traditional exploit needed — just prompt control
 
 **LLM outputs can be risky. They might run bad code or reveal secrets if used without checking. Always treat what the model gives you as untrusted.**
+
+><details><summary> ❓ What is the content of flag.txt?</summary> THM{LLM_c0mmand_3xecution_1s_r34l} </details>
