@@ -71,7 +71,7 @@ Solution: It's a tool that creates a secure password hash for GRUB, so only auth
 
 ><details><summary>❓What does LUKS stand for?</summary>Linux Unified Key Setup</details>
 
-><details><summary>❓We cannot attach external storage to the VM, so we have created a /home/tryhackme/secretvault.img file instead. It is encrypted with the password 2N9EdZYNkszEE3Ad. To access it, you need to open it using cryptsetup and then mount it to an empty directory, such as myvault. What is the flag in the secret vault?</summary>THM{LUKS_not_LUX}</details>
+><details><summary>❓We cannot attach external storage to the VM, so we have created a /home/tryhackme/secretvault.img file instead. It is encrypted with the password 2N9EdZYNkszEE3Ad. To access it, you need to open it using cryptsetup and then mount it to an empty directory, such as myvault. What is the flag in the secret vault?</summary>THM{****_***_***}</details>
 
 Solution: Check the Question Hint provided by THM: `sudo cryptsetup open --type luks secretvault.img myvault && sudo mount /dev/mapper/myvault myvault/`. Then you can read your flag with command `cat task3_flag.txt`
 
@@ -119,7 +119,7 @@ Solution: It's in the previous output.
 
 📝 **ssh-copy-id** – A command that copies your SSH public key to a server for passwordless login.
 
-><details><summary>❓What flag is hidden in the sshd_config file?  </summary>THM{secure_SEA_shell}</details>
+><details><summary>❓What flag is hidden in the sshd_config file?  </summary>THM{******_***_*****}</details>
 Solution: Use command: `cat /etc/ssh/sshd_config`
 
 ## Securing User Accounts ##
