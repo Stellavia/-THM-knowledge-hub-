@@ -1,6 +1,6 @@
-🔗[Link to the Room](https://tryhackme.com/room/supplementalmemory)
+🔗 [Link to the Room](https://tryhackme.com/room/supplementalmemory)
 
-## **Topic:** Investigate lateral movement, credential theft, and additional adversary actions in a memory dump.
+## 🏷️ **Topic:** Investigate lateral movement, credential theft, and additional adversary actions in a memory dump. ##
 
 # 📚 Study Notes #
 
@@ -76,7 +76,7 @@ Solution: `cat getsids.txt | grep 4840`
 Solution: `cat precooked/cmdline.txt | grep 4840` 
 
 ><details><summary>❓Given the command line from the previous question, which well-known hacker tool is most likely the malicious process?</summary>Mimikatz</details>
-Solution: You heave to search web for "*which hacker tool uses privilege::debug to enable debug privileges*" or "*Which hacker tool uses sekurlsa::logonpasswords" for dumping credentials from LSASS*" 
+Solution: You have to search web for "*which hacker tool uses privilege::debug to enable debug privileges*" or "*Which hacker tool uses sekurlsa::logonpasswords" for dumping credentials from LSASS*" 
 
 ><details><summary>❓Which MITRE ATT&CK technique ID corresponds to the method the attacker employed to evade detection, as identified in the previous steps?</summary>T1036</details>
 Solution: https://attack.mitre.org/techniques/T1036/
