@@ -1,4 +1,4 @@
-This repository contains my notes and solutions from 360+ TryHackMe rooms.
+This repository contains my notes and solutions from 370+ TryHackMe rooms.
 
 ## 📚 Structure
 - Fundamentals
@@ -9,6 +9,7 @@ This repository contains my notes and solutions from 360+ TryHackMe rooms.
 - Web
 - AI
 - Memory Analysis
+- Cloud
 
 
 
