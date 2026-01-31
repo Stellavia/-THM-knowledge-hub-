@@ -48,3 +48,29 @@ Answers for these two questions are in the text (or you can search it up online)
 Solution: It's a tool that creates a secure password hash for GRUB, so only authorized users can change boot settings or access root.
 
 ><details><summary>❓What does PBKDF2 stand for? </summary>Password-Based Key Derivation Function 2</details>
+
+## Filesystem Partitioning and Encryption ##
+
+- Disk encryption protects data if a device is stolen or physically accessed.
+- Encrypted data is unreadable without the correct password, making the disk useless to attackers.
+
+- Most Linux systems use LUKS (Linux Unified Key Setup) for disk encryption.
+- LUKS encrypts a partition using a master key, which is protected by one or more user passwords = this allows multiple users to unlock the same encrypted disk with different passwords.
+- LUKS supports strong encryption algorithms and securely derives keys from passwords using PBKDF2 = The actual data on the disk is encrypted with the master key.
+
+📝 In a simple wording **LUKS** [Linux Unified Key Setup] is a tool that encrypts Linux disks so data can’t be read without a password.
+
+📝 **PBKDF2** is a method that turns a password into a strong encryption key.
+
+📝 **Cryptsetup** is a command-line tool to set up and manage encrypted Linux partitions.
+  
+
+- Linux distributions usually provide a graphical way to encrypt disks, but encryption can also be set up from the command line using cryptsetup. Once encrypted, the partition must be unlocked, formatted, and mounted before use.
+
+- Encryption is an essential layer of security, especially to protect data if disks or devices are stolen.
+
+><details><summary>❓What does LUKS stand for?</summary>Linux Unified Key Setup</details>
+
+><details><summary>❓We cannot attach external storage to the VM, so we have created a /home/tryhackme/secretvault.img file instead. It is encrypted with the password 2N9EdZYNkszEE3Ad. To access it, you need to open it using cryptsetup and then mount it to an empty directory, such as myvault. What is the flag in the secret vault?</summary>THM{LUKS_not_LUX}</details>
+
+Solution: Check the Question Hint provided by THM: `sudo cryptsetup open --type luks secretvault.img myvault && sudo mount /dev/mapper/myvault myvault/`. Then you can read your flag with command `cat task3_flag.txt`
