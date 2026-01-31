@@ -8,6 +8,7 @@ This repository contains my notes and solutions from 360+ TryHackMe rooms.
 - Digital Forensics
 - Web
 - AI
+- Memory Analysis
 
 
 
