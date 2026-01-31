@@ -53,6 +53,19 @@ Solution: `cat precooked/netscan.txt | grep TeamsView`
 
  ##  Privilege Escalation and Credential Dumping ##
 
+ - Check service-related processes for unusual behavior: Attackers may abuse misconfigured services to gain higher privileges.
+ - Look at which users are running suspicious processes: Unexpected or high-privilege users can indicate misuse.
+   
+ - In the room you can see examples of how to identify potential signs of privilege escalation through memory analysis:
+   - ***Detection of Malicious Process Execution*** 543mal.exe by running `vol -f apt41.dmp windows.pstree`
+   - ***Detecting privilege levels of malicious execution*** by running `vol -f apt41.dmp windows.getsids --pid 1612`
+   - ***Detecting privilege escalation via service*** by running `vol -f apt41.dmp windows.pstree`
+   - ***Detecting privilege levels of malicious execution*** by running `vol -f apt41.dmp windows.getsids --pid 1531`
+  - In the example, the attacker initially operated under the user account michael.brown, executing 543mal.exe as a reverse shell, and later escalated privileges to svc_backup.
+  
+  - The privilege escalation was achieved through service manipulation, exploiting misconfigured services present on the system and as a result, up.exe was executed.
+
+
 ><details><summary>❓Conduct a deeper investigation and identify another suspicious process on the host. Provide a full path to the process in your answer. </summary>C:\Windows\Temp\pan.exe</details>
 Solution: `cat precooked/cmdline.txt` search for pan.exe
 
@@ -63,7 +76,7 @@ Solution: `cat getsids.txt | grep 4840`
 Solution: `cat precooked/cmdline.txt | grep 4840` 
 
 ><details><summary>❓Given the command line from the previous question, which well-known hacker tool is most likely the malicious process?</summary>Mimikatz</details>
-Solution: You heave to search web for "which hacker tool uses privilege::debug to enable debug privileges?" or "Which hacker tool uses sekurlsa::logonpasswords" for dumping credentials from LSASS?" 
+Solution: You heave to search web for "*which hacker tool uses privilege::debug to enable debug privileges*" or "*Which hacker tool uses sekurlsa::logonpasswords" for dumping credentials from LSASS*" 
 
 ><details><summary>❓Which MITRE ATT&CK technique ID corresponds to the method the attacker employed to evade detection, as identified in the previous steps?</summary>T1036</details>
 Solution: https://attack.mitre.org/techniques/T1036/
