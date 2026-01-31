@@ -52,8 +52,7 @@
 ><details><summary>❓Which cloud model allows you to migrate a big on-premises network to the cloud?</summary>IaaS</details>
 Solution: This is mentioned in the text as well as you can easily google it :)
 
-><details><summary>❓Which cloud model do Elastic Cloud and CrowdStrike Falcon fit into?
-Note: You may need to perform external research to answer this question. </summary>SaaS</details>
+><details><summary>❓Which cloud model do Elastic Cloud and CrowdStrike Falcon fit into? Note: You may need to perform external research to answer this question. </summary>SaaS</details>
 Solution: Same as previous one - search for it on the web.
 
 ## Security of the Cloud ##
@@ -104,7 +103,7 @@ You trade control and visibility for convenience.
 ><details><summary>❓Is the cloud provider responsible for securing and monitoring its own infrastructure (Yea/Nay)? </summary> Yea </details>
 Solution: Cloud providers are responsible for securing and monitoring their own infrastructure (physical data centers, HW, networking, Virtualization layer) = this is called "Security of the cloud". You as a customer are responsible for what you put in.
 
-><details><summary>❓But should you trust the cloud provider without watching for supply chain threats? (Yea/Nay)</summary> </details>
+><details><summary>❓But should you trust the cloud provider without watching for supply chain threats? (Yea/Nay)</summary> Nay </details>
 Solution: Cloud providers can be breached and that would affect many customers at once.
 
 ## Security in the Cloud ##
@@ -178,8 +177,8 @@ Even without these, SIEM + logs = decent SOC coverage
 
 - In this challenge you need to visit static site to get two flags. Happy exercising!
 
-><details><summary>What is the flag you get after completing the first exercise?</summary>THM{flag_as_a_service!}</details>
-><details><summary>What is the flag you get after completing the second exercise?</summary>THM{ready_for_cloud_migration!}</details>
+><details><summary>What is the flag you get after completing the first exercise?</summary>THM{****_**_*_********}</details>
+><details><summary>What is the flag you get after completing the second exercise?</summary>THM{*****_***_*****_**********}</details>
 
 
 ## Summary ##
