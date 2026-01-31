@@ -74,3 +74,149 @@ Solution: It's a tool that creates a secure password hash for GRUB, so only auth
 ><details><summary>❓We cannot attach external storage to the VM, so we have created a /home/tryhackme/secretvault.img file instead. It is encrypted with the password 2N9EdZYNkszEE3Ad. To access it, you need to open it using cryptsetup and then mount it to an empty directory, such as myvault. What is the flag in the secret vault?</summary>THM{LUKS_not_LUX}</details>
 
 Solution: Check the Question Hint provided by THM: `sudo cryptsetup open --type luks secretvault.img myvault && sudo mount /dev/mapper/myvault myvault/`. Then you can read your flag with command `cat task3_flag.txt`
+
+## Firewall ##
+
+- A firewall controls which network traffic can enter or leave a system, protecting it from attacks.
+- On Linux, firewalls are usually host-based, meaning they protect a single system, and they work by controlling traffic based on ports rather than processes.
+
+- **Key points**:
+  - **Purpose**: Block unauthorized access, prevent clients from acting as servers, and control network traffic.
+  - **Linux firewalls **: Modern Linux firewalls are stateful, tracking ongoing connections for better security.
+  - **Netfilter** : The core packet-filtering system in the Linux kernel. Front-ends like iptables and nftables let you manage rules (**iptables** uses chains: INPUT, OUTPUT, FORWARD to allow or block traffic amd **nftables** is newer, more efficient, and also controls traffic through tables and chains).
+  - **Simpler tools** : Front-ends like UFW (Uncomplicated Firewall) make firewall setup easier. Example: ufw allow 22/tcp allows SSH traffic.
+  - **Firewall policy** : Decide whether to block all and allow exceptions (safer) or allow all and block exceptions (more convenient).
+
+📝 **iptables** – A Linux tool to set firewall rules for controlling network traffic using netfilter.
+
+📝 **nftables** – A modern Linux firewall tool that manages traffic more efficiently than iptables.
+
+📝 **UFW** – “Uncomplicated Firewall,” a simple tool to allow or block network traffic on Linux.
+
+⚠️ Firewalls are essential for Linux security, but rules must be planned carefully, especially as exceptions grow.
+
+><details><summary>❓There is a firewall running on the Linux VM. It is allowing port 22 TCP as we can ssh into the machine. It is allowing another TCP port; what is it?</summary>12526</details>
+Solution: Run command `sudo ufw status`
+
+><details><summary>❓What is the allowed UDP port?</summary>14298</details>
+Solution: It's in the previous output.
+
+## Remote Access ##
+
+- Remote access lets you control a system from anywhere, but it also exposes the system to attacks like password sniffing, guessing, or exploiting services.
+
+- Key protections:
+  - Use encrypted protocols (e.g., SSH) instead of cleartext ones like Telnet.
+  - Prevent password guessing by disabling root login (`PermitRootLogin no`) and by using strong passwords or, better, public key authentication.
+  - Set up SSH keys by generating keys with `ssh-keygen -t rsa` and copy the public key to the server with `ssh-copy-id username@server`.
+  - Configure SSH server (`/etc/ssh/sshd_config`) to enable key authentication (`PubkeyAuthentication yes`) and disable password login (`PasswordAuthentication no`).
+
+⚠️ Using SSH keys instead of passwords makes remote access secure and reduces the risk of attackers guessing credentials.
+
+📝 **SSH** – A secure protocol for remote login and file transfer on Linux.
+
+📝 **ssh-keygen** – A tool that creates a public/private key pair for secure SSH access.
+
+📝 **ssh-copy-id** – A command that copies your SSH public key to a server for passwordless login.
+
+><details><summary>❓What flag is hidden in the sshd_config file?  </summary>THM{secure_SEA_shell}</details>
+Solution: Use command: `cat /etc/ssh/sshd_config`
+
+## Securing User Accounts ##
+
+- The root account has full control over the system and should not be used for everyday work. Mistakes made as root can easily break the system.
+
+<img width="444" height="241" alt="image" src="https://github.com/user-attachments/assets/a011830c-255f-4ffd-b7d9-5c3d460bca83" />
+
+- **Best practices**:
+  - Use sudo: Create a normal user for admin tasks and add it to the `sudo` (Debian/Ubuntu) or `wheel` (RedHat/Fedora) group + Use sudo only when root privileges are needed.
+  - Disable root login: After setting up a sudo user, disable direct root access by setting its shell to `/sbin/nologin`.
+  - Enforce strong passwords: Use `libpwquality` to require longer, more complex passwords and prevent password reuse.
+  - Disable unused accounts: Disable accounts that no longer need access by setting their shell to `/sbin/nologin`. Do the same for service accounts (e.g., `www-data`, `nginx`) to prevent interactive logins if compromised.
+
+💡 Limiting root usage, enforcing strong passwords, and disabling unused accounts greatly reduces the risk of system compromise.
+
+📝 **sudo** – Lets a regular user run commands with root (administrative) privileges.
+
+📝 **sudoers** – A group of users allowed to use sudo on a Linux system.
+
+📝 **/sbin/nologin** – A shell that prevents a user or service account from logging in interactively. 
+
+><details><summary>❓One way to disable an account is to edit the `passwd` file and change the account’s shell. What is the suggested value to use for the shell?</summary>/sbin/nologin</details>
+Solution: On Linux, each user account has a login shell defined in the /etc/passwd file. The shell determines what program runs when the user logs in. To disable an account without deleting it, you can change its shell to a special value that prevents interactive logins. This means the user or service cannot open a shell session, effectively disabling their ability to log in while keeping the account intact for system purposes instead of removing the account.
+
+><details><summary>❓What is the name of the RedHat and Fedora systems sudoers group?</summary>wheel</details>
+
+><details><summary>❓What is the name of the sudoers group on Debian and Ubuntu systems?</summary>sudo</details>
+
+><details><summary>❓Other than tryhackme and ubuntu, what is the username that belongs to the sudoers group?</summary>blacksmith</details>
+Solution: Run commmand: `cat /etc/group | grep sudo`
+
+## Software and Services ##
+
+- Installing software and running services increases potential security risks.
+  
+- To reduce your attack surface:
+  - **Disable unnecessary services**: Remove or disable software you don’t need, like web servers, to minimize vulnerabilities.
+  - **Block unneeded ports**: Adjust your firewall to block network ports for services you don’t use (e.g., block ports 80/443 if no web server).
+  - **Avoid legacy protocol**: Use secure alternatives (e.g., SSH instead of Telnet, SFTP instead of TFTP) because old network protocols are insecure and should be avoided.
+  - **Remove identification strings**: Don’t reveal software versions or system info in network responses to prevent attackers from gathering intelligence.
+  
+><details><summary>❓Besides FTPS, what is another secure replacement for TFTP and FTP? </summary>SFTP</details>
+Solution: Secure File Transfer Protocol, a safe way to transfer files over SSH.
+
+
+## Update and Upgrade Policies ##
+
+- Keeping your Linux system up-to-date is essential to protect against security vulnerabilities.
+
+- Key points:
+  - Updating packages: Debian/Ubuntu: apt update + apt upgrade, RedHat/Fedora: dnf update (newer) or yum update (older)
+  - Use supported distributions: Ubuntu LTS: Long Term Support releases (e.g., 20.04, 22.04) get 5 years of free updates, plus optional Extended Security Maintenance (ESM). RedHat Enterprise Linux: Up to 12 years of support in phases (full support, maintenance, extended life).
+  - Kernel updates: Keep the kernel updated to fix critical vulnerabilities like “Dirty COW,” which can allow root access.
+  - Automatic updates: Configure updates to install automatically when possible, and monitor security news to respond quickly to vulnerabilities.
+
+💡 **Keeping both software and the kernel up-to-date significantly reduces the risk of attacks.**
+
+<img src="https://github.com/user-attachments/assets/c667cddd-4989-4cd4-b423-f2028309190c" width="300">
+
+><details><summary>❓What command would you use to update an older Red Hat system?</summary>yum update</details>
+
+><details><summary>❓What command would you use to update a modern Fedora system?</summary>dnf update</details>
+
+><details><summary>❓What two commands are required to update a Debian system? (Connect the two commands with &&.)</summary>apt update && apt upgrade</details>
+
+><details><summary>❓What does yum stand for?</summary>Yellowdog Updater, Modified</details>
+
+><details><summary>❓What does dnf stand for?</summary>Dandified YUM</details>
+
+><details><summary>❓What flag is hidden in the sources.list file?</summary>THM{not_Advanced_Persistent_Threat}</details>
+Solution: Run `find / -type f -name sources.list 2>/dev/null` to find the file, then read it with `cat /etc/apt/sources.list` to read the flag.
+
+## Audint and Log Configuration ##
+
+Most log files on Linux systems are stored in the /var/log directory. Here are a few of the logs that can be referenced when looking into threats:
+
+- `/var/log/messages` - a general log for Linux systems
+- `/var/log/auth.log` - a log file that lists all authentication attempts (Debian-based systems)
+- `/var/log/secure` - a log file that lists all authentication attempts (Red Hat and Fedora-based systems)
+- `/var/log/utmp` - an access log that contains information regarding users that are currently logged into the system
+- `/var/log/wtmp` - an access log that contains information for all users that have logged in and out of the system
+- `/var/log/kern.log` - a log file containing messages from the kernel
+- `/var/log/boot.log` - a log file that contains start-up messages and boot information
+
+- to view last few lines use `tail`, e.g. `tail -n 12 boot.log` will display the last 12 lines.
+- or you can also use `grep`, e.g. `grep FAILED boot.log`, which will show ou only the lines with the word `FAILED`.
+  
+><details><summary>❓What command can you use to display the last 15 lines of kern.log?</summary>tail -n 15 kern.log</details>
+
+><details><summary>❓What command can you use to display the lines containing the word denied in the file secure?</summary>grep denied secure</details>
+
+## Summary ##
+
+- Hardening a Linux system is about following good practices to reduce risks. Key takeaways:
+  - **Document host information** – Keep track of system details.
+  - **Test changes first** – Apply and verify updates or configurations on a test system before production.
+  - **Document all changes** – Record everything you do to maintain clarity and accountability.
+
+⚠️ **Following these basic guidelines helps maintain a secure and well-managed Linux system, and the level of documentation may grow with the size of your environment.** 
