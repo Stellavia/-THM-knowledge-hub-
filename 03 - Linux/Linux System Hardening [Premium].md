@@ -214,7 +214,8 @@ Most log files on Linux systems are stored in the /var/log directory. Here are a
 
 ## Summary ##
 
-- Hardening a Linux system is about following good practices to reduce risks. Key takeaways:
+- Hardening a Linux system is about following good practices to reduce risks.
+- Key takeaways:
   - **Document host information** – Keep track of system details.
   - **Test changes first** – Apply and verify updates or configurations on a test system before production.
   - **Document all changes** – Record everything you do to maintain clarity and accountability.
