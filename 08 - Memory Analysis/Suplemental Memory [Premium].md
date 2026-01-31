@@ -91,8 +91,8 @@ Solution: https://attack.mitre.org/techniques/T1036/
 - Investigated malicious process execution and system discovery behaviour.
 - Uncovered privilege escalation and credential dumping indicators.
 
-  ## ✨ Bonus ##
-  - After finishing this room you'll receive **Memory Sletuh** Badge!
+## ✨ Bonus ##
+- After finishing this room you'll receive **Memory Sletuh** Badge!
     
     <img width="590" height="266" alt="image" src="https://github.com/user-attachments/assets/449ed6e9-edcb-4073-9a7a-46fb068f4c8d" />
 
