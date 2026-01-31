@@ -1,4 +1,4 @@
-[Link to the Room](https://tryhackme.com/room/supplementalmemory)
+🔗[Link to the Room](https://tryhackme.com/room/supplementalmemory)
 
 ## **Topic:** Investigate lateral movement, credential theft, and additional adversary actions in a memory dump.
 
@@ -90,3 +90,9 @@ Solution: https://attack.mitre.org/techniques/T1036/
 - Detected lateral movement activity through memory artefacts.
 - Investigated malicious process execution and system discovery behaviour.
 - Uncovered privilege escalation and credential dumping indicators.
+
+  ## ✨ Bonus ##
+  - After finishing this room you'll receive **Memory Sletuh** Badge!
+    
+    <img width="590" height="266" alt="image" src="https://github.com/user-attachments/assets/449ed6e9-edcb-4073-9a7a-46fb068f4c8d" />
+
