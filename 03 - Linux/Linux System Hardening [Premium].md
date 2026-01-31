@@ -190,7 +190,7 @@ Solution: Secure File Transfer Protocol, a safe way to transfer files over SSH.
 
 ><details><summary>❓What does dnf stand for?</summary>Dandified YUM</details>
 
-><details><summary>❓What flag is hidden in the sources.list file?</summary>THM{not_Advanced_Persistent_Threat}</details>
+><details><summary>❓What flag is hidden in the sources.list file?</summary>THM{***_********_**********_******}</details>
 Solution: Run `find / -type f -name sources.list 2>/dev/null` to find the file, then read it with `cat /etc/apt/sources.list` to read the flag.
 
 ## Audint and Log Configuration ##
