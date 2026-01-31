@@ -53,7 +53,7 @@
 Solution: This is mentioned in the text as well as you can easily google it :)
 
 ><details><summary>❓Which cloud model do Elastic Cloud and CrowdStrike Falcon fit into?
-Note: You may need to perform external research to answer this question. </details>SaaS</summary>
+Note: You may need to perform external research to answer this question. </summary>SaaS</details>
 Solution: Same as previous one - search for it on the web.
 
 ## Security of the Cloud ##
@@ -101,10 +101,10 @@ Solution: Same as previous one - search for it on the web.
 ⚠️***Cloud ≠ fully safe***
 You trade control and visibility for convenience.
 
-><details><summary>❓Is the cloud provider responsible for securing and monitoring its own infrastructure (Yea/Nay)? </details> Yea</summary>
+><details><summary>❓Is the cloud provider responsible for securing and monitoring its own infrastructure (Yea/Nay)? </summary> Yea </details>
 Solution: Cloud providers are responsible for securing and monitoring their own infrastructure (physical data centers, HW, networking, Virtualization layer) = this is called "Security of the cloud". You as a customer are responsible for what you put in.
 
-><details><summary>❓But should you trust the cloud provider without watching for supply chain threats? (Yea/Nay) </details> Nay </summary>
+><details><summary>❓But should you trust the cloud provider without watching for supply chain threats? (Yea/Nay)</summary> </details>
 Solution: Cloud providers can be breached and that would affect many customers at once.
 
 ## Security in the Cloud ##
@@ -133,11 +133,11 @@ Solution: Cloud providers can be breached and that would affect many customers a
 - Various SaaS breaches → caused by weak passwords, leaked API keys, stolen cookies → attackers steal data
 
 
-><details><summary>❓Does moving an unpatched server to the cloud make it secure again? (Yea/Nay) </details> Nay </summary>
+><details><summary>❓Does moving an unpatched server to the cloud make it secure again? (Yea/Nay) </summary> Nay </details>
 Solution: Moving an old, unpatched server to the cloud doesn't fix its vulnerabilities as the server has the same security flaws as it had.
 ⚠️ **Cloud ≠ automatic security — it helps with availability and hardware, but doesn't fix your mistakes.**
 
-><details><summary>❓ What is the first major obstacle to integrating most cloud products with a SIEM?  </details> Paid Logs </summary>
+><details><summary>❓ What is the first major obstacle to integrating most cloud products with a SIEM?  </summary> Paid Logs </details>
 Solution: Many cloud providers charge extra to export logs or use advanced logging features and if your SIEM relies on these logs, you can’t collect everything for free.
 
 ## What to Protect & Monitor ##
@@ -170,9 +170,9 @@ Even without these, SIEM + logs = decent SOC coverage
 5. Collect the logs: forward to SIEM (cloud logs aren’t kept long)
 6. Monitor for anomalies: detect suspicious logins and admin actions
 
-><details><summary>❓ What term describes cloud compute resources like VMs or containers? </details> Workloads </summary>
-><details><summary>❓Which of the mentioned cloud security tools do Falco and Tetragon fit into?
-Note: You may need to perform external research to answer this question.</details> CWPP</summary>
+><details><summary>❓ What term describes cloud compute resources like VMs or containers? </summary> Workloads </details>
+
+><details><summary>❓Which of the mentioned cloud security tools do Falco and Tetragon fit into? Note: You may need to perform external research to answer this question.</summary> CWPP</details>
 
 ### Challenge ###
 
