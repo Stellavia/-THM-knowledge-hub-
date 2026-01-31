@@ -1,4 +1,4 @@
-https://github.com/user-attachments/assets/8d71a111-4115-40ec-b513-2d8ed595a060
+[Link for the Room](https://github.com/user-attachments/assets/8d71a111-4115-40ec-b513-2d8ed595a060)
 
 
 ## **Topic:** Learn how LLMs handle their output and the privacy risks behind it.
