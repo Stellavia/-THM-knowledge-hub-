@@ -49,3 +49,36 @@ Solution: It uses uppercase, lowercase, numbers, it's not a common dictionary wo
 
 ## Practical Example of OS Security ##
 
+- This example shows how attackers break into a system using weak passwords.
+  - An attacker finds a username, tries to guess the password, tries to gain admin/root access (Called root on Linux, Android, macOS, called administrator on Windows as these accounts have full system control)
+
+- In the example, a Linux system is attacked using SSH (remote login with Username: sammie and password: dragon)
+  - using this weak password, the attacker successfully logs in.
+  - after logging in, the attacker can view files, read sensitive information, look for other users (johnny, linda), try to guess their passwords too and also attempt privilege escalation.
+
+### Step-by-Step OS Attack Chain ###
+
+1. **Information discovery**: Attacker finds a username (e.g. sammie); password is exposed on a sticky note (dragon).
+2. **Initial access**: Attacker connects remotely using SSH amd uses the guessed password to log in successfully.
+3. **User verification**: Runs `whoami` to confirm access as sammie.
+4. **System exploration**: Uses `ls` to list files and `cat` to read sensitive documents = gains insight into system usage and stored data.
+5. *Credential discovery**: Uses `history` to see past commands and learns about other users on the system (johnny, linda).
+6. **Lateral movement**: Tries to access other user accounts. Attempts password guessing using `ssh johnny@MACHINE_IP`
+or `su - johnny`
+7. **Privilege escalation** (goal): Attempts to gain root/administrator access which means getting full control over the system if successful.
+
+><details><summary>❓Based on the top 7 passwords, let’s try to find Johnny’s password. What is the password for the user johnny?</summary>abc123</details>
+Solution: In the task 2 you have list of most common passwords. Check the 7th one.
+
+><details><summary>❓Once you are logged in as Johnny, use the command `history` to check the commands that Johnny has typed. We expect Johnny to have mistakenly typed the root password instead of a command. What is the root password?</summary>happyHack!NG</details>
+
+
+><details><summary>❓While logged in as Johnny, use the command `su - root` to switch to the root account. Display the contents of the file flag.txt in the root directory. What is the content of the file?</summary>THM{**********}</details>
+Solution: Use command `cat /root/flag.txt`
+
+
+
+
+
+
+
