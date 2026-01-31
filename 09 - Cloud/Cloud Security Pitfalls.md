@@ -140,8 +140,53 @@ Solution: Moving an old, unpatched server to the cloud doesn't fix its vulnerabi
 ><details><summary>❓ What is the first major obstacle to integrating most cloud products with a SIEM?  </details> Paid Logs </summary>
 Solution: Many cloud providers charge extra to export logs or use advanced logging features and if your SIEM relies on these logs, you can’t collect everything for free.
 
+## What to Protect & Monitor ##
+
+- SaaS: easiest - ingest logs via API, watch for risky actions (e.g., public docs, suspicious logins, data exports)
+- IaaS: harder - monitor: Workloads (VMs, containers), cloud services (databases, storage), control plane (cloud admin console logins/actions)
+
+### Cloud Monitoring Challenges ###
+
+- On-premises tools (EDR, SIEM) often don’t work the same in the cloud
+- Cloud limitations: Containers & auto-scaling (EDR not supported), SIEM integration may be tricky, forensics limited (memory/disk access)
+- Logging volume: On-prem > IaaS > SaaS = this means the amount of logs you get decreases as you move from on-premises systems to cloud services. On-premises you control everything, you can log everything from servers, apps, network, endpoints. IaaS: You control the VMs and workloads, but the cloud provider controls the underlying infrastructure = fewer logs available. SaaS: You only see user activity and app-level events = least amount of logs.
+
+⚠️**The less control you have, the less logging data you get → harder to monitor everything.**
+
+### Common Cloud Security Tools ###
+
+- CASB: enforce cloud security policies
+- CWPP: protect workloads from malware
+- CSPM: alert on misconfigurations
+
+Even without these, SIEM + logs = decent SOC coverage
+
+## Recommended Actions ##
+
+1. List your clouds: know where critical data lives
+2. Know the risks: plan for possible cloud breaches
+3. Enable cloud logs: SaaS + IaaS + PaaS
+4. Enable workload logs: treat VMs like on-premises systems
+5. Collect the logs: forward to SIEM (cloud logs aren’t kept long)
+6. Monitor for anomalies: detect suspicious logins and admin actions
+
+><details><summary>❓ What term describes cloud compute resources like VMs or containers? </details> Workloads </summary>
+><details><summary>❓Which of the mentioned cloud security tools do Falco and Tetragon fit into?
+Note: You may need to perform external research to answer this question.</details> CWPP</summary>
+
+### Challenge ###
+
+- In this challenge you need to visit static site to get two flags. Happy exercising!
+
+><details><summary>What is the flag you get after completing the first exercise?</summary>THM{flag_as_a_service!}</details>
+><details><summary>What is the flag you get after completing the second exercise?</summary>THM{ready_for_cloud_migration!}</details>
+
 
 ## Summary ##
+- Learned IaaS, PaaS, SaaS differences
+- Discovered cloud risks and migration pitfalls
+- Saw that protecting cloud resources is challenging
+- Logging and SOC monitoring in the cloud is harder than on-prem
 
-><details><summary>❓ </details> </summary>
-><details><summary>❓ </details> </summary>
+
+
