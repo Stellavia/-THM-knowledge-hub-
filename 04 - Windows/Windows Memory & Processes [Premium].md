@@ -49,10 +49,10 @@ E.g. Your browser is one process; Loading a webpage, playing a video, responding
 
 - Understanding these links helps identify malicious or hidden activity.
 
-><details><<summary>❓ What field is used to keep track of all the active processes? Only enter the fields' name.</summary>ActiveProcessLinks</details>
+><details><summary>❓ What field is used to keep track of all the active processes? Only enter the fields' name.</summary>ActiveProcessLinks</details>
 ***Solution***: *This field inside the EPROCESS structure used to link all currently running processes together in a list. Windows then walks this list to know which processes are active.*
   
-><details><<summary>❓What field is used to store the PID of a process? Only enter the fields' name. </summary> UniqueProcessId</details>
+><details><summary>❓What field is used to store the PID of a process? Only enter the fields' name. </summary> UniqueProcessId</details>
 ***Solution***: *It's field inside the EPROCESS structure. Windows uses this value to uniquely identify each running process.*
 
 ## Initial Triage of a New Memory Dump ##
@@ -67,13 +67,59 @@ E.g. Your browser is one process; Loading a webpage, playing a video, responding
 
 - Now you have to investigate links between suspicious processes and other processes to uncover hidden malicious activity.
 
-><details><<summary>❓What is the PID of the csrss.exe process that has 12 threads? You can use the pslist.txt file to find the answer. </summary>440</details>
+><details><summary>❓What is the PID of the csrss.exe process that has 12 threads? You can use the pslist.txt file to find the answer. </summary>440</details>
 ***Solution***: *The `pslist.txt` contains the output of Volatility's `Windows.pslist` module, which looks like a table. Search for `csrss.exe` in it. Search for the one that has 12 threads as Windows can have several csrss.exe threads running.*
   
-><details><<summary>❓What is the (memory) Offset(V) of the process with PID 5672? You can use the pslist.txt file to find the answer. </summary> 0x990b29293080 </details>
+><details><summary>❓What is the (memory) Offset(V) of the process with PID 5672? You can use the pslist.txt file to find the answer. </summary>0x990b29293080 </details>
 ***Solution***: *In the `pslist.txt`* search for PID 5672 and look at the Offset(V) column, there's your answer.
 
 
-  
-><details><<summary>❓ </summary></details>
-><details><<summary>❓ </summary></details>
+## Linking Processes ##
+
+- Before analyzing suspicious processes in detail, check if they are connected to other processes.
+
+- Malware often runs as a chain of processes, where one process spawns another to carry out malicious activity.
+
+e.g.: 
+```explorer.exe → cmd.exe → powershell.exe → svchost.exe → asyncrat.exe```
+A malicious LNK file triggers cmd.exe, which starts PowerShell to download the payload, svchost.exe is used to masquerade as a system process, and finally the malware (asyncrat.exe) runs.
+
+>[!NOTE]
+> The processtree.txt file maps parent-child process relationships and can be searched by PID to identify the process name.
+>
+### Task ###
+
+1. Generate a process tree using Volatility: `vol3 -f memory_dump windows.pstree > processtree.txt`
+2. Simplify the tree to show PID, PPID, and ImageFileName: `cut -d$'\t' -f1,2,3 processtree.txt`
+
+<img width="437" height="219" alt="image" src="https://github.com/user-attachments/assets/9a320d27-3280-4d58-ba94-a6ab560c6697" />
+
+<img width="515" height="504" alt="image" src="https://github.com/user-attachments/assets/4dd3ba48-f2e0-4c4e-8b4b-9d9f633e141e" />
+
+### Key Observations ###
+- Multiple "update” processes are chained unusually, suggesting suspicious activity.
+- Presence of conhost.exe indicates possible network activity.
+- The chain is highly likely malicious based on process names, hierarchy, and behavior.
+
+><details><summary>❓What is the parentID (PPID) of the services.exe (PID 664) process? Use the processtree.txt file to answer the question. </summary>524</details>
+
+><details><summary>❓What is the ImageFileName of the process that has the PID 7788? Use the processtree.txt file to answer the question. </summary>FTK Imager.exe</details>
+***Solution***: *`processtree.txt` is the output of Volatility's `windows.pstree` module. Use `less processtree.txt` then scroll or use `/7788` to search.*
+
+>[!NOTE]
+>*Use `pslist` to see what exists, and `pstree` to see how it happened.
+>
+> **pslist** - *What is running?* - shows a flat list of processes found in memory; focuses on PID, process name, thread count, memory offset - to identify suspicious process names, find PIDs, threads and offsets and to get an overview of running processes.
+>  - e.g. "*What is the PID of* `csrss.exe` *with 12 threads*?" or "*What is the Offset(V) of PID 5672*?"
+>    
+> **pstree** - *Who spawned whom?* - shows processes in a parent-child tree structure; focuses on process relationships and execution chains - it's best used to reconstruct attack chains, see how malware was launched or identify suspicious parent-child behavior.
+>  - e.g. "*Which process started* `powershell.exe`?" or "*What process is associated with PID 7788*?"
+
+
+
+
+><details><summary>❓ </summary></details>
+><details><summary>❓ </summary></details>
+><details><summary>❓ </summary></details>
+><details><summary>❓ </summary></details>
+><details><summary>❓ </summary></details>
