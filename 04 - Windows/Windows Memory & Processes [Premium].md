@@ -125,13 +125,13 @@ A malicious LNK file triggers cmd.exe, which starts PowerShell to download the p
 >[!IMPORTANT]
 >Here I recommend to follow steps on THM as I am not going to copy paste all of it here. These are only my summary notes.
 
-- PSSCAN – Finding Hidden or Terminated Processes
+- **PSSCAN** – Finding Hidden or Terminated Processes
   - Scans memory for all process structures, including terminated processes, unlinked or hidden processes
   - Method: run `windows.psscan` and compare results with `windows.pslist` - processes found in psscan but not in pslist may require investigation.
   - Result: Several processes appeared only in psscan (e.g., `svchost.exe`, `ctfmon.exe`) but all identified processes were common Windows processes and appeared benign.
   - Verification Checks: 1. Confirm executable path (e.g., C:\Windows\System32\). 2. Review loaded DLLs for injection or hollowing. 3. Ensure active processes have at least one thread. 4. Check Exit Time consistency. 5. Dump and analyze process memory if needed.
 
-- PSXVIEW – Cross-Referencing Process Visibility
+- **PSXVIEW** – Cross-Referencing Process Visibility
   - Uses multiple detection methods to cross-check process visibility; highlights processes missing from `pslist` but present in other scans.
   - Method: Run `windows.psxview` and filter for entries where `pslist == False`.
   - Result: Processes flagged by psxview matched those seen in psscan; no strong indicators of process hiding or manipulation were found.
@@ -156,12 +156,12 @@ A malicious LNK file triggers cmd.exe, which starts PowerShell to download the p
 - After identifying a suspicious process chain starting from WINWORD.EXE, the next step is to confirm malicious behavior by dumping and analyzing process memory using Volatility.
 - Our goal is to extract executables and data from suspicious processes, identify indicators of compromise (IOCs) and collect artifacts for deeper malware analysis.
 
-###1. Finding Executable Paths### (`windows.dlllist`)
+### 1. Finding Executable Paths ### (`windows.dlllist`)
   - The `windows.dlllist` module is used to identify the main executable path and review loaded DLLs.
   - This helps determine whether a process is running from a legitimate system location or an unusual user-controlled path.
   - Key finding: `pdfupdater.exe`, `windows-update.exe`, and `updater.exe` all run from user directories, which is highly suspicious; `WINWORD.EXE` runs from a legitimate Office path.
 
-###2. Dumping Process Memory### (`windows.dumpfiles`)
+### 2 . Dumping Process Memory ### (`windows.dumpfiles`)
   - Suspicious processes are dumped from memory to extract executables, embedded documents, and configuration or payload data.
   - Processes dumped: `WINWORD.EXE`, `pdfupdater.exe`, `windows-update.exe`, `updater.exe` (excluded: `cmd.exe`, `conhost.exe`, `powershell.exe` — better analyzed with other modules)
 
@@ -171,12 +171,12 @@ Dumped File Types
 | ImageSectionObject |	Mapped executable images (.exe, .dll, injected PE files) |
 | DataSectionObject |	Data files (configs, logs, unpacked payloads, documents) |
 
-###3. Artifact Discovery### 
+### 3. Artifact Discovery ### 
   - Macro-enabled Word documents found: `cv-resume-test.docm` and `Normal.dotm`
   - Macro files are commonly abused to execute malicious VBA code *(MITRE: T1059.005 – Visual Basic)*
   - Extracted executables and data files: `pdfupdater.exe`, `windows-update.exe`, `updater.exe` = These names imitate legitimate software but behave inconsistently with real update mechanisms.
 
-###4. Key Conclusions###
+### 4. Key Conclusions ###
   - Multiple executables masquerade as update processes.
   - All suspicious binaries originate from user-writable locations.
   - Microsoft Word likely acted as the initial infection vector via a malicious macro document.
@@ -233,28 +233,28 @@ Solution: While in the `~/7788` use command `ls | grep -E ".exe" -i`
 >[!NOTE]
 > | Code | Description |
 > | ------------------------------------------ | -------------------------------- |
-> | vol3 -f mem.mem windows.pslist > pslist.txt | list active processes |
-> | vol3 -f mem.mem windows.pstree > processtree.txt | show process tree (parent/child relationship |
-> | cut -d$'\t' -f1,2,3 processtree.txt | filter useful columns (PID / PPID / mame) |
-> | vol3 -f mem.mem windows.psscan > psscan.txt | scan all process objects (even hidden/terminated) |
-> | vol3 -f mem.mem windows.psxview > psxview.txt | cross-view process checks |
-> | awk 'NR==3 \|\| $4 == "False"' psxview.txt | show only suspicious mismatches |
-> | awk '{print $1,$3}' pslist.txt \| sort > pslist_processed.txt
-> | awk '{print $1,$3}' psscan.txt \| sort > psscan_processed.txt | compare pslist vs psscan (prep files) |
-> | comm -23 psscan_processed.txt pslist_processed.txt | find processes missing from pslist |
-> | awk '$5 == 0 {count++} END {print count}' psscan.txt | count processes with 0 threads from psscan) |
-> | grep 7788 processtree.txt | find process by PID in pstree |
-> | grep 5672 pslist.txt | find process by PID in pslist |
-> | vol3 -f mem.mem windows.dlllist --pid PID > PID_dlllist.txt | list loaded DLLs + executable path |
-> | cat 5252_dlllist.txt | to view use cat |
-> | mkdir PID; cd PID; vol3 -f ../mem.mem windows.dumpfiles --pid PID | dump process files |
-> | ls PID \| grep -E ".docm\|.dotm" -i | find macro Word files |
-> | ls PID \| grep -E ".exe\|.dat" -i | find executables and data files |
-> | file filename.dat | identify real file type |
-> | strings suspicious_file.img \| less | extract readable strings |
-> | strings file.img \| grep -i http | search inside strings |
-> | strings file.img \| grep -i powershell | search inside strings |
-> | strings file.img \| grep -i cmd | search inside strings |
+> | ``vol3 -f mem.mem windows.pslist > pslist.txt`` | list active processes |
+> | ``vol3 -f mem.mem windows.pstree > processtree.txt`` | show process tree (parent/child relationship |
+> | ``cut -d$'\t' -f1,2,3 processtree.txt`` | filter useful columns (PID / PPID / mame) |
+> | ``vol3 -f mem.mem windows.psscan > psscan.txt`` | scan all process objects (even hidden/terminated) |
+> | ``vol3 -f mem.mem windows.psxview > psxview.txt`` | cross-view process checks |
+> | ``awk 'NR==3 \|\| $4 == "False"' psxview.txt`` | show only suspicious mismatches |
+> | ``awk '{print $1,$3}' pslist.txt \| sort > pslist_processed.txt``
+> | ``awk '{print $1,$3}' psscan.txt \| sort > psscan_processed.txt`` | compare pslist vs psscan (prep files) |
+> | ``comm -23 psscan_processed.txt pslist_processed.txt`` | find processes missing from pslist |
+> | ``awk '$5 == 0 {count++} END {print count}' psscan.txt`` | count processes with 0 threads from psscan) |
+> | ``grep 7788 processtree.txt`` | find process by PID in pstree |
+> | ``grep 5672 pslist.txt`` | find process by PID in pslist |
+> | ``vol3 -f mem.mem windows.dlllist --pid PID > PID_dlllist.txt`` | list loaded DLLs + executable path |
+> | ``cat 5252_dlllist.txt`` | to view use cat |
+> | ``mkdir PID; cd PID; vol3 -f ../mem.mem windows.dumpfiles --pid PID`` | dump process files |
+> | ``ls PID \| grep -E ".docm\|.dotm" -i`` | find macro Word files |
+> | ``ls PID \| grep -E ".exe\|.dat" -i`` | find executables and data files |
+> | ``file filename.dat`` | identify real file type |
+> | ``strings suspicious_file.img \| less`` | extract readable strings |
+> | ``strings file.img \| grep -i http`` | search inside strings |
+> | ``strings file.img \| grep -i powershell`` | search inside strings |
+> | ``strings file.img \| grep -i cmd`` | search inside strings |
 
 
 
