@@ -21,31 +21,48 @@
   - **Integrity**: Data cannot be changed or tampered with
   - **Availability**: Your system is usable when you need it
 
+&nbsp;
+
+---
 
 ><details><summary>❓Which of the following is not an operating system? AIX, Android, Chrome OS, Solaris, Thunderbird</summary>Thunderbird</details>
-Solution: It's an e-mail client application.
+**Solution**: It's an e-mail client application.
+
+---
+
+&nbsp;
+
 
 ## Common Examples of OS Security ##
 
-- Operating system security protects confidentiality (who can see data), integrity (data can’t be changed) and availability (system is usable)
+- **Operating system security protects confidentiality** (who can see data), **integrity** (data can’t be changed) and **availability** (system is usable)
+
 
 - Attackers commonly target three weaknesses:
 
-1. **Weak authentication** (bad passwords) - authentication proves who you are.
-  - It can be something you know (password, PIN), something you are (fingerprint), or something you have (phone/SMS)
-  - Passwords are attacked the most as many people use easy or reused passwords (e.g., 123456, password, qwerty).
-  - Easy passwords let attackers access private accounts and data.
-  - ⚠️ Strong, unique passwords are essential.
+  **1. Weak authentication** (bad passwords) - authentication proves who you are. <br>
+      - It can be something you know (password, PIN), something you are (fingerprint), or something you have (phone/SMS) <br>
+      - Passwords are attacked the most as many people use easy or reused passwords (e.g., 123456, password, qwerty). <br>
+      - Easy passwords let attackers access private accounts and data. <br>
+      - ⚠️ Strong, unique passwords are essential. <br>
 
-2. **Weak file permissions** - systems should follow least privilege: only the right people can access files.
-  - Weak permissions allow attackers to read files they shouldn’t (break confidentiality), change files they shouldn’t (break integrity)
+  **2. Weak file permissions** - systems should follow least privilege: only the right people can access files. <br>
+      - Weak permissions allow attackers to read files they shouldn’t (break confidentiality), change files they shouldn’t (break integrity). <br>
 
-3. **Malicious programs (malware)** - Malware can attack all three security pillars.
-  - e.g. trojans can give attackers access to your system and files.
-  - e.g. ransomware locks (encrypts) files and demands money to unlock them, attacking availability.
+  **3. Malicious programs (malware)** - Malware can attack all three security pillars. <br>
+      - e.g. trojans can give attackers access to your system and files. <br>
+      - e.g. ransomware locks (encrypts) files and demands money to unlock them, attacking availability. <br>
+
+&nbsp;
+
+---
 
 ><details><summary>❓Which of the following is a strong password, in your opinion? iloveyou, 1q2w3e4r5t, LearnM00r, qwertyuiop  </summary>LearnM00r</details>
-Solution: It uses uppercase, lowercase, numbers, it's not a common dictionary word, not a keyboard pattern and it's harder to guess or brute-force.
+**Solution**: It uses uppercase, lowercase, numbers, it's not a common dictionary word, not a keyboard pattern and it's harder to guess or brute-force.
+
+---
+
+&nbsp;
 
 ## Practical Example of OS Security ##
 
@@ -67,15 +84,23 @@ Solution: It uses uppercase, lowercase, numbers, it's not a common dictionary wo
 or `su - johnny`
 7. **Privilege escalation** (goal): Attempts to gain root/administrator access which means getting full control over the system if successful.
 
+&nbsp;
+
+---
+
 ><details><summary>❓Based on the top 7 passwords, let’s try to find Johnny’s password. What is the password for the user johnny?</summary>abc123</details>
-Solution: In the task 2 you have list of most common passwords. Check the 7th one.
+**Solution**: In the task 2 you have list of most common passwords. Check the 7th one.
+
+---
 
 ><details><summary>❓Once you are logged in as Johnny, use the command `history` to check the commands that Johnny has typed. We expect Johnny to have mistakenly typed the root password instead of a command. What is the root password?</summary>happyHack!NG</details>
 
+---
 
 ><details><summary>❓While logged in as Johnny, use the command `su - root` to switch to the root account. Display the contents of the file flag.txt in the root directory. What is the content of the file?</summary>THM{**********}</details>
-Solution: Use command `cat /root/flag.txt`
+**Solution**: Use command `cat /root/flag.txt`
 
+---
 
 
 
