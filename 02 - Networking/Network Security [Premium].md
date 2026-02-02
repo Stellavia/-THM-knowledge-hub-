@@ -44,10 +44,37 @@
 
 --- 
 
+&nbsp;
+
+## Methodology ##
+
+- Successful attacks require planning and information gathering, similar to planning wildlife photography, a military operation, or a burglary.
+
+- Breaking into a network usually follows the **Cyber Kill Chain**, which **has seven steps**:
+
+**1. Reconnaissance** – Gather information about the target (systems, users, IPs). <br>
+**2. Weaponization** – Prepare malware or a malicious file. <br>
+**3. Delivery** – Send the malicious file to the target (email, USB, etc.). <br>
+**4. Exploitation** – Victim opens the file, triggering the attack. <br>
+**5. Installation** – Malware installs on the system. <br>
+**6. Command & Control (C2)** – Attacker gains remote control of the system. <br>
+**7. Actions on Objectives** – Attacker achieves goals (e.g., data exfiltration). <br>
+   
+
+- The process is similar to a thief planning a break-in: observe first, plan entry, then steal valuables.
+
+<img width="1140" height="508" alt="821ff7df89367ba6d12cbdacd669027a" src="https://github.com/user-attachments/assets/a96bc3c8-4412-410c-ae43-c3f1a773fd63" />
+
+
+&nbsp;
+
+---
+
 ><details><summary>❓During which step of the Cyber Kill Chain does the attacker gather information about the target</summary>Recon</details>
 >Solution: The attacker gathers info about the target before launching the attack, which is first step
 
 ---
+### Practical Example of Network Security
 
 ><details><summary>❓What is the password in the secret.txt file?</summary>ABC789xyz123</details>
 
