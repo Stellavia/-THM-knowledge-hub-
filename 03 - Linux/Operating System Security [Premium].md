@@ -26,7 +26,7 @@
 ---
 
 ><details><summary>❓Which of the following is not an operating system? AIX, Android, Chrome OS, Solaris, Thunderbird</summary>Thunderbird</details>
-**Solution**: It's an e-mail client application.
+>✅Solution: It's an e-mail client application.
 
 ---
 
@@ -58,7 +58,7 @@
 ---
 
 ><details><summary>❓Which of the following is a strong password, in your opinion? iloveyou, 1q2w3e4r5t, LearnM00r, qwertyuiop  </summary>LearnM00r</details>
-**Solution**: It uses uppercase, lowercase, numbers, it's not a common dictionary word, not a keyboard pattern and it's harder to guess or brute-force.
+>✅Solution: It uses uppercase, lowercase, numbers, it's not a common dictionary word, not a keyboard pattern and it's harder to guess or brute-force.
 
 ---
 
@@ -89,7 +89,7 @@ or `su - johnny`
 ---
 
 ><details><summary>❓Based on the top 7 passwords, let’s try to find Johnny’s password. What is the password for the user johnny?</summary>abc123</details>
-**Solution**: In the task 2 you have list of most common passwords. Check the 7th one.
+>✅Solution: In the task 2 you have list of most common passwords. Check the 7th one.
 
 ---
 
@@ -98,7 +98,7 @@ or `su - johnny`
 ---
 
 ><details><summary>❓While logged in as Johnny, use the command `su - root` to switch to the root account. Display the contents of the file flag.txt in the root directory. What is the content of the file?</summary>THM{**********}</details>
-**Solution**: Use command `cat /root/flag.txt`
+>✅Solution: Use command `cat /root/flag.txt`
 
 ---
 
