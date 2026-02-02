@@ -60,11 +60,11 @@
 
 ---
 ><details><summary>❓ What field is used to keep track of all the active processes? Only enter the fields' name.</summary>ActiveProcessLinks</details>
-***Solution***: *This field inside the EPROCESS structure used to link all currently running processes together in a list. Windows then walks this list to know which processes are active.*
+>✅Solution: *This field inside the EPROCESS structure used to link all currently running processes together in a list. Windows then walks this list to know which processes are active.*
 
 ---  
 ><details><summary>❓What field is used to store the PID of a process? Only enter the fields' name. </summary> UniqueProcessId</details>
-***Solution***: *It's field inside the EPROCESS structure. Windows uses this value to uniquely identify each running process.*
+>✅Solution: *It's field inside the EPROCESS structure. Windows uses this value to uniquely identify each running process.*
 
 ---
 &nbsp;  <!-- Toto pridáva prázdny riadok navyše -->
@@ -85,11 +85,11 @@
 
 ---
 ><details><summary>❓What is the PID of the csrss.exe process that has 12 threads? You can use the pslist.txt file to find the answer. </summary>440</details>
-***Solution***: *The `pslist.txt` contains the output of Volatility's `Windows.pslist` module, which looks like a table. Search for `csrss.exe` in it. Search for the one that has 12 threads as Windows can have several csrss.exe threads running.*
+>✅Solution: *The `pslist.txt` contains the output of Volatility's `Windows.pslist` module, which looks like a table. Search for `csrss.exe` in it. Search for the one that has 12 threads as Windows can have several csrss.exe threads running.*
 
 --- 
 ><details><summary>❓What is the (memory) Offset(V) of the process with PID 5672? You can use the pslist.txt file to find the answer. </summary>0x990b29293080 </details>
-***Solution***: *In the `pslist.txt`* search for PID 5672 and look at the Offset(V) column, there's your answer.
+>✅Solution: *In the `pslist.txt`* search for PID 5672 and look at the Offset(V) column, there's your answer.
 
 ---
 
@@ -133,7 +133,7 @@ A malicious LNK file triggers cmd.exe, which starts PowerShell to download the p
 ><details><summary>❓What is the parentID (PPID) of the services.exe (PID 664) process? Use the processtree.txt file to answer the question. </summary>524</details>
 ---
 ><details><summary>❓What is the ImageFileName of the process that has the PID 7788? Use the processtree.txt file to answer the question. </summary>FTK Imager.exe</details>
-***Solution***: *`processtree.txt` is the output of Volatility's `windows.pstree` module. Use `less processtree.txt` then scroll or use `/7788` to search.*
+>✅Solution: *`processtree.txt` is the output of Volatility's `windows.pstree` module. Use `less processtree.txt` then scroll or use `/7788` to search.*
 
 ---
 
@@ -239,7 +239,7 @@ Dumped File Types
 ><details><summary>❓What is the path of the process with PID 7788? </summary>C:\Program Files\AccessData\FTK Imager\FTK Imager.exe</details>
 ---
 ><details><summary>❓Dump the process with PID 7788. What is the name of the dumped file that represents the executable? </summary>file.0x990b2ae1ed40.0x990b29954a20.ImageSectionObject.FTK Imager.exe.img</details>
-**Solution**: While in the `~/7788` use command `ls | grep -E ".exe" -i`
+>✅Solution: While in the `~/7788` use command `ls | grep -E ".exe" -i`
 
 ---
 
