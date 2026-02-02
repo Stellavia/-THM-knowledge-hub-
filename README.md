@@ -12,10 +12,13 @@ This repository contains my notes and solutions from 370+ TryHackMe rooms.
 - Cloud
 
 
+&nbsp;
 
-## ⚠️ Disclaimer
-Notes are for educational purposes only.
-Some rooms may contain partial solutions.
+>[!WARNING]
+>Notes are for **educational purposes only**. Some rooms may contain partial solutions.
+
+&nbsp;
 
 ## 🧠 Goal
-Build a personal cybersecurity knowledge base and track learning progress.
+Build a personal cybersecurity knowledge base and track my learning progress.
+
