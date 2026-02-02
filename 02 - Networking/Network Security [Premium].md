@@ -71,20 +71,43 @@
 ---
 
 ><details><summary>❓During which step of the Cyber Kill Chain does the attacker gather information about the target</summary>Recon</details>
->Solution: The attacker gathers info about the target before launching the attack, which is first step
+>✅Solution: The attacker gathers info about the target before launching the attack, which is first step
 
 ---
 ### Practical Example of Network Security
 
+1. **Start AttackBox and target machine and open the terminal**. 
+2. **Run Recon with Nmap**: Scan the target → find open services (FTP, SSH, HTTP).
+   - command: `nmap MACHINE_IP`
+3. **Connect to FTP**: Log in as anonymous and list files.
+   - command: `ftp MACHINE_IP`; `anonymous`; then `ls` to list files.
+4. **Download interesting files** (like secret.txt).
+   - command: `get FILE_NAME` then `exit` 
+5. **Read the file** with `cat` to find a password.
+   - command: `cat FILE_NAME`
+6. **Login with SSH as root** using the discovered password.
+   - command: `ssh root@MACHINE_IP`
+7. You now have full access to the system.
+8. **Navigate folders** (`cd`, `ls`, `pwd`) and read flag files with `cat`.
+
+
+
+&nbsp;
+
+---
+
 ><details><summary>❓What is the password in the secret.txt file?</summary>ABC789xyz123</details>
+>✅Solution: First 5 steps in the list above.
 
 ---
 
 ><details><summary>❓What is the content of the flag.txt in the /root directory?</summary>THM{***_******_*****}</details>
+>✅Solution: Use commands (without brackets): [cd /root], [ls], [cat flag.txt]
 
 ---
 
 ><details><summary>❓What is the content of the flag.txt in the /home/librarian directory?</summary>THM{*********_*******_***********}</details>
+>✅Solution: Use commands (without brackets): [cd /home/librarian], [ls], [cat flag.txt]
 
 ---
 
