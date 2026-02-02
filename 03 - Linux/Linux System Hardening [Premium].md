@@ -55,7 +55,7 @@
 ---
 
 ><details><summary>❓ What command can you use to create a password for the GRUB bootloader?</summary>grub2-mkpasswd-pbkdf2</details>
-**Solution**: It's a tool that creates a secure password hash for GRUB, so only authorized users can change boot settings or access root.
+>✅Solution: It's a tool that creates a secure password hash for GRUB, so only authorized users can change boot settings or access root.
 
 ---
 
@@ -98,8 +98,7 @@
 ---
 
 ><details><summary>❓We cannot attach external storage to the VM, so we have created a /home/tryhackme/secretvault.img file instead. It is encrypted with the password 2N9EdZYNkszEE3Ad. To access it, you need to open it using cryptsetup and then mount it to an empty directory, such as myvault. What is the flag in the secret vault?</summary>THM{****_***_***}</details>
-
-**Solution**: Check the Question Hint provided by THM: `sudo cryptsetup open --type luks secretvault.img myvault && sudo mount /dev/mapper/myvault myvault/`. Then you can read your flag with command `cat task3_flag.txt`
+>✅Solution: Check the Question Hint provided by THM: `sudo cryptsetup open --type luks secretvault.img myvault && sudo mount /dev/mapper/myvault myvault/`. Then you can read your flag with command `cat task3_flag.txt`
 
 ---
 
@@ -136,11 +135,11 @@
 ---
 
 ><details><summary>❓There is a firewall running on the Linux VM. It is allowing port 22 TCP as we can ssh into the machine. It is allowing another TCP port; what is it?</summary>12526</details>
-**Solution**: Run command `sudo ufw status`
+>✅Solution: Run command `sudo ufw status`
 
 ---
 ><details><summary>❓What is the allowed UDP port?</summary>14298</details>
-**Solution**: It's in the previous output.
+>✅Solution: It's in the previous output.
 
 ---
 
@@ -175,7 +174,7 @@
 ---
 
 ><details><summary>❓What flag is hidden in the sshd_config file?  </summary>THM{******_***_*****}</details>
-**Solution**: Use command: `cat /etc/ssh/sshd_config`
+>✅Solution: Use command: `cat /etc/ssh/sshd_config`
 
 ---
 
@@ -215,7 +214,7 @@
 ---
 
 ><details><summary>❓One way to disable an account is to edit the `passwd` file and change the account’s shell. What is the suggested value to use for the shell?</summary>/sbin/nologin</details>
-**Solution**: On Linux, each user account has a login shell defined in the /etc/passwd file. The shell determines what program runs when the user logs in. To disable an account without deleting it, you can change its shell to a special value that prevents interactive logins. This means the user or service cannot open a shell session, effectively disabling their ability to log in while keeping the account intact for system purposes instead of removing the account.
+>✅Solution: On Linux, each user account has a login shell defined in the /etc/passwd file. The shell determines what program runs when the user logs in. To disable an account without deleting it, you can change its shell to a special value that prevents interactive logins. This means the user or service cannot open a shell session, effectively disabling their ability to log in while keeping the account intact for system purposes instead of removing the account.
 
 ---
 
@@ -228,7 +227,7 @@
 ---
 
 ><details><summary>❓Other than tryhackme and ubuntu, what is the username that belongs to the sudoers group?</summary>blacksmith</details>
-**Solution**: Run commmand: `cat /etc/group | grep sudo`
+>✅Solution: Run commmand: `cat /etc/group | grep sudo`
 
 ---
 
@@ -250,7 +249,7 @@
 ---
   
 ><details><summary>❓Besides FTPS, what is another secure replacement for TFTP and FTP? </summary>SFTP</details>
-**Solution**: Secure File Transfer Protocol, a safe way to transfer files over SSH.
+>✅Solution: Secure File Transfer Protocol, a safe way to transfer files over SSH.
 
 ---
 
@@ -300,7 +299,7 @@
 ---
 
 ><details><summary>❓What flag is hidden in the sources.list file?</summary>THM{***_********_**********_******}</details>
-**Solution**: Run `find / -type f -name sources.list 2>/dev/null` to find the file, then read it with `cat /etc/apt/sources.list` to read the flag.
+>✅Solution: Run `find / -type f -name sources.list 2>/dev/null` to find the file, then read it with `cat /etc/apt/sources.list` to read the flag.
 
 ---
 
