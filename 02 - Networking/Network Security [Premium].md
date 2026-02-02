@@ -44,8 +44,7 @@
 
 --- 
 
-><details><summary>❓During which step of the Cyber Kill Chain does the attacker gather information about the target?
-</summary>Recon</details>
+><details><summary>❓During which step of the Cyber Kill Chain does the attacker gather information about the target</summary>Recon</details>
 >Solution: The attacker gathers info about the target before launching the attack, which is first step
 
 ---
