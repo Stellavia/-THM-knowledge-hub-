@@ -10,7 +10,7 @@ This repository contains my notes and solutions from 370+ TryHackMe rooms.
 - AI
 - Memory Analysis
 - Cloud
-
+- Malware
 
 &nbsp;
 
