@@ -15,9 +15,9 @@
 ## Common Application Information
 
 ---
-><details><summary>❓When was Microsoft 365 and Office installed on the disk image in the attached VM? Format in GMT YYYY-MM-DD hh:mm:ss</summary>2025-04-26 06:41:43</details
+><details><summary>❓When was Microsoft 365 and Office installed on the disk image in the attached VM? Format in GMT YYYY-MM-DD hh:mm:ss</summary>2025-04-26 06:41:43</details>
 ---
-><details><summary>❓What is the name of the package used to install Microsoft Word?</summary>Microsoft_Word_Internal.pkg</details
+><details><summary>❓What is the name of the package used to install Microsoft Word?</summary>Microsoft_Word_Internal.pkg</details>
 ---
 
 ## Autostart Items
