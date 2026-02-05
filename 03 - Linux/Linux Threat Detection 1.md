@@ -10,7 +10,7 @@
 
 <!-- No Questions -->
 
-## Popularity of SSH
+### Popularity of SSH
 
 - SSH (Secure Shell) is the standard remote access method for Linux servers
  -Almost every Internet-facing Linux system has SSH enabled
@@ -20,7 +20,7 @@
 >[!CAUTION]
 >Weak SSH configurations are a common target for brute-force attacks
 
-### Initial Access via SSH
+## Initial Access via SSH
 
 - SSH is powerful and frequently misconfigured - similar to RDP on Windows
 - Both are tracked under MITRE ATT&CK: External Remote Services
@@ -40,6 +40,12 @@
 
 - Many Linux threat groups (e.g., Outlaw) gain access via exposed SSH, weak credentials, stolen keys
 - These attacks often escalate quickly once access is obtained
+
+---
+><details><summary>❓When did the ubuntu user log in via SSH for the first time? Answer example: 2023-09-16</summary>2024-10-22</details>
+---
+><details><summary>❓Did the ubuntu user use SSH keys instead of a password for the above found date? (Yea/Nay)</summary>Yea</details>
+---
 
 ## Detecting SSH Attacks
 
@@ -85,6 +91,15 @@ There are three indicators of malicious logins to pay attention to:
   - Is password-based SSH truly required?
 
 **Even one suspicious successful login can be enough to justify an incident response.**
+
+---
+><details><summary>❓When did the SSH password brute force start? Answer format: 2023-09-15</summary>2025-08-21</details>
+---
+><details><summary>❓Which four users did the botnet attempt to breach? Answer Format: Separate by a comma, in alphabetical order.</summary>root, roy, sol, user</details>
+---
+><details><summary>❓Finally, which IP managed to breach to root user?</summary>91.224.92.79</details>
+---
+
 
 ## Initial Access via Services
 
@@ -132,6 +147,13 @@ There are three indicators of malicious logins to pay attention to:
 - Use of shell metacharacters `;`, `&&`, `|`, 
 - Execution of OS commands `whoami`, `ls`, 
 - Pattern of failed attempts (500 errors), followed by successful command execution (200 responses)
+
+---
+><details><summary>❓What is the path to the Python file the attacker attempted to open?</summary>/opt/trypingme/main.py</details>
+---
+><details><summary>❓Looking inside the opened file, what's the flag you see there?</summary>THM{*_**_**********!}</details>
+---
+
 
 ## Detecting Initial Access via Process Tree
 
@@ -191,6 +213,15 @@ Clear Indicators of Compromise
   - Commands not expected in normal app behavior
 - This confirms that the application was exploited and it was used as the Initial Access vector
 
+---
+><details><summary>❓What is the PPID of suspicious whoami command?</summary>1018</details>
+---
+><details><summary>❓Moving up the tree, what is the PID of the TryPingMe app?</summary>577</details>
+---
+><details><summary>❓Which program did the attacker use to open a reverse shell?</summary>Python</details>
+---
+
+
 ## Advanced Initial Access
 
 ### Human-Led Attacks
@@ -232,6 +263,10 @@ Detection Workflow
 
 <img width="947" height="192" alt="image" src="https://github.com/user-attachments/assets/29a6e68c-f569-419d-833b-9bfff09f9750" />
 
+---
+><details><summary>❓Which Initial Access technique is likely used if a trusted app suddenly runs malicious commands?</summary>Supply Chain Compromise</details>
+---
+><details><summary>❓</summary>Which detection method can you use to detect a variety of Initial Access techniques?</summary>Process Tree Analysis</details>
 ---
 ><details><summary>❓</summary></details>
 
