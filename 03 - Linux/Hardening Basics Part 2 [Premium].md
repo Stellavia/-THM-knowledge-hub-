@@ -192,29 +192,125 @@ Example
 
 ## Disable Username & Password SSH Login
 
-
-
-
+- Verify that your key exchange login works, otherwise you might lock yourself or other users out of the system.
+-  To do this, go to the `/etc/ssh/sshd_config` file and edit the line `PasswordAuthentication yes` to `PasswordAuthentication no`
+-  Afterwards restart SSH to apply changes by `sudo systemctl restart sshd`
 
 ## X11 Forwarding & SSH Tunneling
 
-<!-- No Questions -->
+- You've connected to your workstation that has SSH enabled and you go about your work on the command-line. Everything is going great. But then you run into a problem. You need to run a program that only has a GUI.  How would you accomplish that via SSH?  That's what X11 Forwarding is for. X11 allows you to forward GUI application displays to your local environment (thought it has to have a GUI itself, right?). However, X11 has some flaws that make it dangerous to use. So let's look at turning it off.
+
+### Turn off X11 Forwarding
+
+- To turn off X11 Forwarding you need to change setting in `sshd_config` specifically `X11 Forwarding yes` to `X11 Forwarding no`
+<img width="229" height="352" alt="image" src="https://github.com/user-attachments/assets/34a1dd7a-2986-46f4-b209-42761ae1e709" />
+
+### SSH Tunneling
+
+- Lets someone forward network traffic through your SSH connection
+- Example: Access a blocked website by tunneling through your home SSH server
+- Why block it:
+  - Can bypass network restrictions
+  - Can be abused to create unauthorized tunnels into your network
+
+- To disable it, in `/etc/ssh/sshd_config`, set these options: 
+<img width="177" height="83" alt="image" src="https://github.com/user-attachments/assets/ac133a99-febf-4854-ae9f-b024e5ca58d8" />
+
+- Afterwards restart ssh with `sudo systemctl restart sshd`
+- This hardens SSH and prevents unauthorized port forwarding or tunneling.
+
+>[!NOTE]
+> X11 Forwarding - disable unless you really need GUI over SSH
+> SSH Tunneling - disable to prevent unauthorized network access
+> Both settings improve SSH security on your server.
+
+
 
 ## Improving SSH Logging
 
-<!-- No Questions -->
+- A log file is created any time someone logs in with a Protocol that uses SSH.
+- By default, Ubuntu stores this log file in /var/log/auth.log
+
+<img width="934" height="322" alt="image" src="https://github.com/user-attachments/assets/1990c1e8-84ea-454c-bc81-8a7cff712bbe" />
+
+- There's a few different levels of logging that you can find in the man pages of `sshd_config`: QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG1, DEBUG2, DEBUG3
+- INFO is the default setting.
+- To change the logging level go to `/etc/ssh/sshd_config` and look for the line `#LogLevel INFO` - uncomment that line and change it to any of the available levels.
 
 ## Chapter 4: Mandatory Access Control
 
-<!-- No Questions -->
+- MAC is a type of access control that defines who can access what on a system
+- Other types of access control include:
+  - Discretionary Access Control (DAC)
+  - Role-Based Access Control (RBAC)
+  - Rule-Based Access Control
+- MAC is considered the strongest form of access control because it gives strict control over permissions
+
+- Linux has several ways to implement MAC
+- Two popular tools are SELinux and AppArmor
+
 
 ## Introduction to AppArmor
 
-<!-- No Questions -->
+- Preinstalled on Ubuntu → no extra tools needed
+- Implements Mandatory Access Control (MAC)
+- Protects system data and applications from malicious actors
+- Easier to use than SELinux, especially for custom profiles
+
+- Benefits
+  - Applications have their own profiles, simplifying management
+  - Supports custom profiles with simpler syntax than SELinux
+  - Helps protect confidentiality and control access
+
+### AppArmor Configuration
+
+- Profiles directory: `/etc/apparmor.d
+- Contains all AppArmor profiles, e.g. `sbin.dhclient` and `usr.* files`
+- Abstractions directory acts like an includes folder and contains partial profiles that can be reused in custom profiles
+
+- Rules define who can access what:
+  **r** - read
+  **w** - write
+  **m** - executable mapping (mmap)
+
+- `@{HOME}` variable allows rules to apply to any user’s home directory
+- Partial profiles are templates, not full profiles
+
+### Adding More Profiles
+
+- You can install additional profiles with `sudo apt install apparmor-profiles apparmor-profiles-extra`
+
+>[!IMPORTANT]
+>AppArmor lets you control program access with reusable, understandable profiles while making custom hardening easier than SELinux.
+>
+
 
 ## AppArmor Command Line Utilities
 
-<!-- No Questions -->
+- to check AppArmor status use `aa-status` - it shows whether AppArmor is loaded, the mode, and how many profiles are active.
+
+### AppArmor Modes
+- **Enforce** actively enforces the rules in a profile
+- **Complain** allows disallowed actions but logs them
+- **Audit** enforces rules and logs both allowed and disallowed actions (logs in /var/log/audit/audit.log or system log)
+- Modes let you control how strict AppArmor is for different programs.
+
+### AppArmor Command-Line Utilities
+
+- First, install the utilities by `sudo apt install apparmor-utils`
+- Then you can use:
+  `aa-enforce <profile>` = Switch profile to enforce mode
+  `aa-disable <profile>` = Disable a profile
+  `aa-audit <profile>` = Switch profile to audit mode
+  `aa-complain <profile>` = Switch profile to complain mode
+
+>[!IMPORTANT]
+> AppArmor profiles define rules for programs
+> Modes control how strict these rules are
+> Command-line utilities let you enforce, audit, complain, or disable profiles
+> Always check status after changes with aa-status
+>
+
 
 ## Chapter 4 Quiz
 
@@ -232,8 +328,12 @@ Example
 
 ## Chapter 3: SSH and Encryption
 
-<!-- No Questions -->
+- Encryption is essential for protecting data
+- You can encrypt almost anything: Personal files (documents, photos, videos), work or corporate documents, even entire hard drives
+- Knowing how to implement encryption at home or work helps to keep personal data safe from compromise and prevent sensitive work information from being stolen
 
-## Conclusion & Optional Challenges
+>[!IMPORTANT]
+> Encryption is a core skill for security and privacy.
+>
 
-<!-- No Questions -->
+
