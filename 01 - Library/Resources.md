@@ -12,3 +12,5 @@ http://manpages.ubuntu.com/manpages/bionic/man7/PAM.7.html <br>
 https://www.digitalocean.com/community/tutorials/how-to-use-pam-to-configure-authentication-on-an-ubuntu-12-04-vps <br>
 https://linux.die.net/man/8/pam_pwhistory <br>
 https://www.amazon.com/Mastering-Linux-Security-Hardening-intruders/dp/1788620305 <br>
+
+https://www.amazon.co.uk/Interconnecting-Cisco-Network-Devices-ICND1/dp/1587054620/ref=sr_1_1?sr=8-1 - CISCO Network Devices ICND1
