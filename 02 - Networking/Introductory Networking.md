@@ -4,7 +4,6 @@
 
 # 📚 Study Notes 
 
-**== PAGE IN PROGRESS ==**
 
 ## The OSI Model: An Overview
 
