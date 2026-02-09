@@ -367,6 +367,73 @@ While this interpretation is widely accepted, the official definition remains th
 
 ## Networking Tools: Dig
 
+### What Is DNS?
+
+- The **Domain Name System (DNS)** is a TCP/IP protocol that **converts domain names** (which humans use) **into IP addresses** (which computers understand).
+- For example: You type www.google.com, DNS resolves it to an IP address, your computer then connects to that IP address
+- This entire process happens automatically in the background whenever you visit a website.
+
+### How DNS Resolution Works
+
+- When you request a website, your computer resolves the domain name in the following order:
+
+1. **Hosts File**
+- The computer first checks its local **hosts file**
+- This file contains manual IP = domain mappings
+- It is an older system but still takes highest priority
+- Rarely used in modern environments
+
+2. **Local DNS Cache**
+- If no hosts file entry exists, the system checks its local DNS cache
+- If the domain was resolved recently, the cached IP is used
+- If not found, the process continues
+
+3. **Recursive DNS Server**
+- The computer sends a query to a recursive DNS server
+- These are usually provided by your ISP or public providers like Google DNS or OpenDNS
+- The address of the recursive server is stored in your router or system
+- Recursive servers also maintain their own cache
+- If the recursive server does not have the answer cached, it continues the lookup process.
+
+4. **Root Name Servers**
+- Root servers direct queries to the correct **Top-Level Domain (TLD)** servers
+- Historically there were 13 root server IP addresses
+- Today there are many physical servers using those same addresses via load balancing
+- The client is routed to the nearest available root server
+
+5. **Top-Level Domain (TLD) Servers**
+- TLD servers manage domain extensions such as `.com`, `.org`, `.co.uk`
+- The root server forwards the query to the appropriate TLD server
+- TLD servers know which **Authoritative Name Servers** hold the domain’s records
+
+6. **Authoritative Name Servers**
+- These servers store the actual DNS records for domains
+- Every domain has its DNS records stored on an authoritative server
+- This server responds with the final IP address for the domain
+- Once this response is returned, your computer can connect to the website.
+
+### Dig: Manual DNS Queries
+
+- While DNS resolution usually happens automatically, it can be performed manually using the dig command.
+- `dig` is commonly pre-installed on Linux systems
+- It allows direct queries to specific DNS servers
+- Useful for troubleshooting DNS issues
+- syntax: `dig <domain> @<dns-server-ip>`
+
+<img width="616" height="366" alt="image" src="https://github.com/user-attachments/assets/9ccc0ab0-1f31-43e1-b258-6820f9ec8a1b" />
+
+
+### Understanding Dig Output
+
+- The output of dig contains a lot of information.
+- The most important section for basic usage is `ANSWER` section and `TTL` (Time To Live)
+- `ANSWER` section shows the resolved IP address for the queried domain, confirms whether the query succeeded and indicates that the server returned a valid response with no errors
+- `TTL` (Time To Live) defines how long a DNS record can be cached, it is measured in seconds
+- Once the TTL expires, the record must be queried again instead of using the cached version
+- for example: a `TTL` of 157 seconds means the record will expire in 2 minutes and 37 seconds
+<img width="450" height="147" alt="image" src="https://github.com/user-attachments/assets/313c9211-4c7d-4505-9547-eb6d9d00e752" />
+
+
 ---  
 ><details><summary>❓What is DNS short for?</summary>Domain Name System</details>
 ---  
