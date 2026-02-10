@@ -172,6 +172,22 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 
 ## Enumerating Telnet
 
+- Telnet enumeration is about carefully checking a target system for exposed Telnet services and related weaknesses. 
+- Some vulnerabilities are not obvious at first, so a thorough and methodical approach is important. 
+- Proper enumeration helps reveal which services are running and how they might be accessed.
+
+- Begin enumeration with a **port scan** to discover open ports, running services, and system details. 
+- Use `Nmap` to scan the target and check whether Telnet is available and listening. 
+- The scan results help guide your next investigation steps.
+- **Port scanning is the first step in finding Telnet services.**
+
+>[!NOTE]
+> Telnet commonly runs on port 23, so pay extra attention if you see it open in scan results.
+>Service banners from scans can sometimes reveal useful version or configuration details.
+>
+
+&nbsp;
+
 ---  
 ><details><summary>❓How many ports are open on the target machine? Note: you may need to scan non-standard ports too.</summary>1</details>
 ---  
@@ -187,6 +203,39 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 ---
 
 ## Exploiting Telnet
+
+
+- Telnet exploitation usually works because the protocol is insecure by design and often badly configured. 
+- It sends all data in plain text and typically has weak access controls. 
+- While official vulnerabilities (CVEs) exist, real-world attacks more often succeed due to misconfiguration or exposed backdoor services.
+
+- After enumeration, you may discover a Telnet service running — sometimes even labeled as a backdoor — along with possible usernames. 
+- You can try connecting directly to the Telnet port using the telnet client. 
+- If access is gained, this foothold can be used to launch a reverse shell, where the target machine connects back to your attacker machine to provide command execution.
+
+- **Connection syntax**: `telnet [ip] [port]`
+
+- A **reverse shell** means the target system opens a connection back to your listening machine, giving you remote command control.
+
+- **Telnet is insecure**: no encryption + weak access control.
+- Exploits are often based on misconfiguration, not just software bugs.
+- **CVEs** are public records of known **security flaws with ID** numbers.
+- Enumeration may reveal clues like service labels or usernames.
+
+  <img width="632" height="165" alt="image" src="https://github.com/user-attachments/assets/7258d7b8-6fa2-44b0-959d-ebeacbd0886c" />
+
+- **Telnet access can be used as a step toward getting a reverse shell.**
+
+> [!TIP]
+> Useful CVE search resources:
+> https://www.cvedetails.com/
+> https://cve.mitre.org/
+>
+> Always check both known CVEs and configuration mistakes — labs often rely more on misconfigurations than patched vulnerabilities.
+>
+
+&nbsp;
+
 
 ---  
 ><details><summary>❓Great! It's and open telnet connection! What welcome message do we receive?</summary>SKIDY'S BACKDOOR.</details>
