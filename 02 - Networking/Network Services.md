@@ -61,11 +61,14 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 |-G|get group and member list|
 |-a|all of the above (full basic enumeration)|
 
+&nbsp;
 
 >[!TIP]
 >Enum4linux runs multiple Samba-based checks in one command, which makes it great for fast lab work.
 >Using the -a option performs a full basic enumeration in one go — perfect for a first sweep.
 >
+
+&nbsp;
 
 ---  
 ><details><summary>❓Conduct an nmap scan of your choosing, How many ports are open?</summary>3</details>
@@ -91,10 +94,14 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 - Instead of exploiting a software bug, you connect directly if permissions are too open. 
 - The SMBClient tool (part of the Samba suite) is used to remotely connect and interact with SMB shares.
 
+&nbsp;
+
 - **Connection syntax**: `smbclient //[IP]/[SHARE] -U [USERNAME] -p [PORT]`
 - **Example**: `smbclient //10.10.10.10/secrets -U Anonymous -p 445`
 
 - Once connected, you can browse and download files from the share.
+
+&nbsp;
 
 - SMB attacks are often successful due to misconfiguration, not just CVEs.
 - Anonymous share access is a common and dangerous mistake.
@@ -102,12 +109,16 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 - SMBClient is the standard tool to connect to SMB shares.
 - You can run help inside SMBClient to see available commands.
 
+&nbsp;
+
 >[!TIP]
-> Most useful SMBClient commands to remember:
-> ls or dir → list files and folders
-> cd [dir] → change directory
-> get [file] → download a file to your attack machine
+> Most useful SMBClient commands to remember: <br>
+> ls or dir → list files and folders <br>
+> cd [dir] → change directory <br>
+> get [file] → download a file to your attack machine <br>
 >
+
+&nbsp;
 
 ---  
 ><details><summary>❓What would be the correct syntax to access an SMB share called "secret" as user "suit" on a machine with the IP 10.10.10.2 on the default port?</summary>smbclient //10.10.10.2/secret -U suit -p 445</details>
