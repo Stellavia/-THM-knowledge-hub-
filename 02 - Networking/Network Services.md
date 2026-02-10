@@ -8,6 +8,20 @@
 
 ## Understanding SMB
 
+- SMB is a network protocol that allows clients to access and share resources like files, printers, and other services over a network.
+-  It works on a client-server model, where servers host resources and clients connect to use them. 
+- SMB enables these actions remotely, making network resources feel like local ones.
+
+- SMB operates as a request–response protocol: clients send requests and servers respond. 
+- Connections typically use TCP/IP (NetBIOS over TCP/IP), NetBEUI, or IPX/SPX. 
+- Once connected, clients can access shared folders, read and write files, and use printers or other shared services.
+
+<img width="534" height="239" alt="image" src="https://github.com/user-attachments/assets/45c551e7-13ed-40a5-a396-68a933d7f34f" />
+
+- Supported by Windows since Windows 95.
+- Samba provides SMB support for Linux/Unix systems.
+- Often targeted in network attacks due to misconfigurations or weak permissions.
+  
 ---  
 ><details><summary>❓What does SMB stand for?</summary>Server Message Block</details>
 ---  
