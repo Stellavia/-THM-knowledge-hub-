@@ -4,7 +4,6 @@
 
 # 📚 Study Notes 
 
-**== PAGE IN PROGRESS ==**
 
 ## Understanding SMB
 
@@ -253,6 +252,28 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 
 ## Understanding FTP
 
+- **FTP (File Transfer Protocol)** is a network protocol used to transfer files between a client and a server. 
+- It follows a client–server model and is designed to move files efficiently across a network. 
+- FTP is widely supported but has security weaknesses when used without encryption.
+
+- FTP uses two separate channels during a session. 
+- The command (control) channel sends commands and server replies, while the data channel handles the actual file transfer. 
+- The client connects first, the server validates login credentials, and then the session opens so commands and file transfers can happen.
+
+- FTP can work in two modes:
+    - In **Active mode**, the client opens a port and the server connects back to it. 
+    - In **Passive mode**, the server opens a port and the client connects to the server — this is more firewall-friendly.
+
+- FTP is used for **remote file transfer**.
+- It uses **two** channels: one **for commands**, one **for data**.
+- Login is required before file operations begin.
+- Supports **Active** and **Passive** connection modes.
+- Not secure by default — data is usually **unencrypted**.
+
+>[!IMPORTANT]
+> Default FTP port is usually 21 for commands. <br>
+> Because standard FTP is not encrypted, many systems now prefer SFTP or FTPS for secure file transfers. <br>
+> The official FTP specification is documented in RFC 959 by the IETF. <br>
 ---  
 ><details><summary>❓What communications model does FTP use?</summary>client-server</details>
 ---  
@@ -262,6 +283,27 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 ---
 ## Enumerating FTP
 
+- **FTP enumeration** is the **process of checking an FTP service for accessible files**, weak settings, and login options. 
+- A common finding is **anonymous FTP login**, which can expose useful data. 
+- This method is frequently used in CTFs and also reflects real-world misconfigured FTP servers.
+
+- Begin with an `Nmap` port scan to confirm that FTP is running and reachable. 
+- Then use an FTP client to attempt login — especially anonymous access — and explore available files and directories for useful information.
+
+- Most Linux systems already include an **FTP client** and you can test by typing `ftp` in the terminal. 
+- If it’s missing, install it with your package manager.
+
+- **Enumeration still starts with a port scan**.
+- Try anonymous FTP login — it’s a common misconfiguration.
+- FTP clients are usually preinstalled on Kali/Parrot/Linux.
+- Use tool `--help` or `man` tool when you forget command syntax.
+- Accessible files may contain clues for gaining a shell.
+
+- Some older FTP servers respond differently to the cwd command depending on whether a user home directory exists — even before login.
+- This can be abused to discover valid usernames on legacy systems.
+- Documented example: **Exploit‑DB entry 20745**.
+
+  
 ---  
 ><details><summary>❓How many ports are open on the target machine?</summary>3</details>
 ---  
@@ -276,6 +318,34 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 
 ## Exploiting FTP
 
+- FTP exploitation is often possible because FTP traffic is not encrypted, meaning usernames and passwords travel in plain text.
+- This makes interception attacks possible and weak credentials especially dangerous. 
+- In many labs and real cases, the main weakness is default or weak passwords on FTP accounts.
+
+- After enumeration confirms an FTP server and possibly a valid username, the next step is to try password attacks. 
+- A common method is brute forcing with a password list. 
+- The Hydra tool is frequently used for this because it supports many protocols and performs fast dictionary attacks against login services like FTP.
+
+- **Example command** structure: `hydra -t 4 -l [user] -P [wordlist] -vV [target-ip] ftp`
+
+- Hydra will try many password combinations against the FTP service until a valid login is found.
+
+- FTP sends commands and data in plain text.
+- Credentials can be stolen with man-in-the-middle attacks.
+- **Weak or default passwords are a common entry point**.
+- Brute force attacks are often used when a username is known.
+- **Hydra** is a popular **tool for password attacks on FTP** and other services.
+
+
+- Important Hydra options to remember:
+|option|usage|
+|---|---------------------------------------|
+|-l|single username|
+|-P|password wordlist|
+|-t|parallel attempts (speed control)|
+|-vV|very verbose output|
+- Hydra supports 50+ protocols — useful far beyond just FTP.
+  
 ---  
 ><details><summary>❓What is the password for the user "mike"?</summary>password</details>
 ---  
