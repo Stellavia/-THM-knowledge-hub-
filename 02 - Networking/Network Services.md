@@ -140,6 +140,25 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 
 ## Understanding Telnet
 
+- Telnet is an application protocol that lets you connect to and run commands on a remote machine using a telnet client. 
+- After connecting, your session acts like a virtual terminal on the remote host. 
+- It was widely used for remote management but is now mostly outdated.
+
+- A user connects by running the telnet command from a terminal, the telnet client establishes a connection to the telnet server and opens an interactive command session. 
+- You can connect using `telnet [ip] [port]`
+- Once connected, you can execute commands directly on the remote system through the telnet prompt.
+
+- Telnet provides remote command-line access to another machine.
+- It creates a virtual terminal session over the network.
+- It does not encrypt traffic, everything is sent in plain text and because of this, it has mostly been replaced by SSH.
+
+>[!CAUTION]
+> If you see Telnet enabled during enumeration, it’s often a security red flag.
+> Since credentials travel in clear text, Telnet services are risky and commonly targeted in security testing labs.
+>
+
+&nbsp;
+
 ---  
 ><details><summary>❓Is Telnet a client-server protocol (Y/N)?</summary>Y</details>
 ---  
