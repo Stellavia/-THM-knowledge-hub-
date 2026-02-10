@@ -164,10 +164,10 @@ By the time the data is transmitted across the network, the frame has been broke
 |2|Internet|
 |1|Network Interface|
 
->|!NOTE|
->Some modern sources describe TCP/IP as a five-layer model, splitting the Network Interface layer into Data Link and Physical layers (similar to the OSI model).
-While this interpretation is widely accepted, the official definition remains the four-layer model described in RFC 1122.
->Both versions are considered valid.
+>[!NOTE]
+>Some modern sources describe TCP/IP as a five-layer model, splitting the Network Interface layer into Data Link and Physical layers (similar to the OSI model). <br>
+While this interpretation is widely accepted, the official definition remains the four-layer model described in RFC 1122. <br>
+>Both versions are considered valid. <br>
 >
 
 ### TCP/IP vs OSI Model
