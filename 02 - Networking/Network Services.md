@@ -338,12 +338,14 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 
 
 - Important Hydra options to remember:
+  
 |option|usage|
-|---|---------------------------------------|
-|-l|single username|
-|-P|password wordlist|
-|-t|parallel attempts (speed control)|
-|-vV|very verbose output|
+|:--:|---------------------------------------|
+|**-l**|single username|
+|**-P**|password wordlist|
+|**-t**|parallel attempts (speed control)|
+|**-vV**|very verbose output|
+
 - Hydra supports 50+ protocols — useful far beyond just FTP.
   
 ---  
