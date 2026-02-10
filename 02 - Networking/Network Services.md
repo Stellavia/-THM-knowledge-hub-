@@ -83,9 +83,37 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 
 ## Exploiting SMB
 
+- SMB exploitation can happen through real vulnerabilities, but more often it succeeds because of system misconfigurations. 
+- A common example is anonymous SMB share access, where anyone can connect and read files. 
+- This kind of access can expose sensitive data and help an attacker move toward getting a shell.
+
+- After enumeration, you identify the SMB share location and any interesting shares worth accessing. 
+- Instead of exploiting a software bug, you connect directly if permissions are too open. 
+- The SMBClient tool (part of the Samba suite) is used to remotely connect and interact with SMB shares.
+
+- **Connection syntax**: `smbclient //[IP]/[SHARE] -U [USERNAME] -p [PORT]`
+- **Example**: `smbclient //10.10.10.10/secrets -U Anonymous -p 445`
+
+- Once connected, you can browse and download files from the share.
+
+- SMB attacks are often successful due to misconfiguration, not just CVEs.
+- Anonymous share access is a common and dangerous mistake.
+- Enumeration tells you which shares exist and which look valuable.
+- SMBClient is the standard tool to connect to SMB shares.
+- You can run help inside SMBClient to see available commands.
+
+>[!TIP]
+> Most useful SMBClient commands to remember:
+> ls or dir → list files and folders
+> cd [dir] → change directory
+> get [file] → download a file to your attack machine
+>
+
 ---  
 ><details><summary>❓What would be the correct syntax to access an SMB share called "secret" as user "suit" on a machine with the IP 10.10.10.2 on the default port?</summary>smbclient //10.10.10.2/secret -U suit -p 445</details>
 ---  
+><details><summary>❓Great! Now you've got a hang of the syntax, let's have a go at trying to exploit this vulnerability. You have a list of users, the name of the share (smb) and a suspected vulnerability.</summary>No answer needed</details>
+---
 ><details><summary>❓Does the share allow anonymous access? Y/N?</summary>Y</details>
 ---  
 ><details><summary>❓Great! Have a look around for any interesting documents that could contain valuable information. Who can we assume this profile folder belongs to?</summary>John Cactus</details>
