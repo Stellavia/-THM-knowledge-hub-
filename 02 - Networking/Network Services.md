@@ -111,12 +111,13 @@ The syntax of Enum4Linux: `enum4linux [options] ip`
 
 &nbsp;
 
->[!TIP]
-> Most useful SMBClient commands to remember: <br>
-> ls or dir → list files and folders <br>
-> cd [dir] → change directory <br>
-> get [file] → download a file to your attack machine <br>
->
+**Most useful SMBClient commands to remember**: 
+
+|command|what it does|
+|--------------|---------------------------------|
+|**`ls`** or `dir`|list files and folders|
+|**`cd`** [dir]|change directory|
+|**`get`** [file]|download a file to your attack machine|
 
 &nbsp;
 
