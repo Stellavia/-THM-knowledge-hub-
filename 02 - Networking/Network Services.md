@@ -34,6 +34,39 @@
 
 ## Enumerating SMB
 
+- SMB enumeration is the process of collecting information from SMB services on a target machine to find useful data and possible attack paths. 
+- It’s an important early step in security testing because it helps avoid using the wrong exploits and saves time. 
+- Good enumeration often reveals users, shares, and system details.
+
+**First, I recommend you to start the target machine and wait for it to fully boot.**
+
+- Enumeration begins with a port scan to discover open services and system details. 
+- If SMB is available, you can then check for shared folders and exposed data. 
+- Tools like Enum4linux automate SMB enumeration and pull useful information from both Windows and Linux systems.
+
+- **Enumeration** = information gathering before attempting exploitation.
+- SMB shares can contain surprisingly sensitive files.
+- Port scanning comes first (to find out as much info as you can about the services, apps, OS, ...), SMB probing comes after.
+- **Enum4linux** is a go-to tool for quick SMB info gathering.
+
+The syntax of Enum4Linux: `enum4linux [options] ip`
+
+|TAG|FUNCTION|
+|:---:|---------------------------------|
+|-U|get userlist|
+|-M|get machine list|
+|-N|get namelist dump (different from -U and-M)|
+|-S|get sharelist|
+|-P|get password policy information|
+|-G|get group and member list|
+|-a|all of the above (full basic enumeration)|
+
+
+>[!TIP]
+>Enum4linux runs multiple Samba-based checks in one command, which makes it great for fast lab work.
+>Using the -a option performs a full basic enumeration in one go — perfect for a first sweep.
+>
+
 ---  
 ><details><summary>❓Conduct an nmap scan of your choosing, How many ports are open?</summary>3</details>
 ---  
