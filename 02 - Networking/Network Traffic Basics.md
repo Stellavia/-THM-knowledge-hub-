@@ -5,7 +5,22 @@
 
 # 📚 Study Notes 
 
-**== PAGE IN PROGRESS ==**
+&nbsp;
+
+- **Network Traffic Analysis (NTA)** is the process of capturing, inspecting, and analyzing network data as it moves across a network. 
+- Its goal is to **provide full visibility into what is happening inside and outside the network**. 
+NTA is more than just using tools like Wireshark — it combines log correlation, deep packet inspection, and network flow analysis to achieve specific security goals.
+
+&nbsp;
+
+- NTA involves collecting traffic data, examining packets, reviewing logs, and analyzing network flows to understand communication patterns. 
+- Analysts compare normal network behavior (baseline) with unusual activity to detect potential threats. 
+- It is a key skill for both blue team (defensive) and red team (offensive) roles, especially for SOC analysts monitoring security events.
+
+- Strong networking fundamentals make NTA much easier to understand.
+- Recommended background knowledge: **Pre Security** and **Networking Essentials**.
+
+&nbsp;
 
 ## What is the Purpose of Network Traffic Analysis
 
