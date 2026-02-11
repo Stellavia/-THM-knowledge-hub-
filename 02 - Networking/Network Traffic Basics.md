@@ -70,6 +70,8 @@ NTA is more than just using tools like Wireshark — it combines log correlation
 - - The structure depends on the protocol (e.g., HTTP, DNS, FTP).
 
 - For example, in an HTTP request we can see the requested file (e.g., suspicious_package.zip), the server response code (e.g., 200 OK), metadata like content type and file size.
+  
+<img width="583" height="515" alt="image" src="https://github.com/user-attachments/assets/56092a1c-3e5b-4925-800d-6b96054ed95c" />
 
 - However, logs typically do not show the actual file content (the ZIP file itself). Only packet capture allows inspection of the full payload.
 
@@ -123,6 +125,8 @@ NTA is more than just using tools like Wireshark — it combines log correlation
 - But full captures help detect ARP poisoning, MAC spoofing, duplicate MAC usage across interfaces, excessive gratuitous ARP traffic
 
 - For example in an ARP poisoning attack, one device may repeatedly claim to own multiple IP addresses using the same MAC address.
+
+<img width="1298" height="195" alt="image" src="https://github.com/user-attachments/assets/965d7f69-1632-47ca-88af-409883efacf1" />
 
 - Key Things We Can Observe
   - MAC address mappings
