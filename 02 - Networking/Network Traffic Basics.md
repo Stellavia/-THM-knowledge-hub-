@@ -61,6 +61,83 @@ NTA is more than just using tools like Wireshark — it combines log correlation
 
 ## What Network Traffic can we observe?
 
+<img width="1370" height="457" alt="image" src="https://github.com/user-attachments/assets/c2f3c1bd-7dbb-4845-b6f0-660e36735de8" />
+
+
+### Application Layer
+
+- At this layer, we see application headers and the actual payload (data).
+- - The structure depends on the protocol (e.g., HTTP, DNS, FTP).
+
+- For example, in an HTTP request we can see the requested file (e.g., suspicious_package.zip), the server response code (e.g., 200 OK), metadata like content type and file size.
+
+- However, logs typically do not show the actual file content (the ZIP file itself). Only packet capture allows inspection of the full payload.
+
+- Key Things We Can Observe
+  - Requested resources (URLs, filenames)
+  - Response codes (200, 404, etc.)
+  - Headers (User-Agent, Content-Type, etc.)
+  - Full payload (only via packet capture)
+
+>[!NOTE]
+> **Logs show what was requested — packet captures show what was actually delivered.**
+>This is critical when checking for malware downloads or data exfiltration.
+>
+
+### Transport Layer
+
+- Here, data is segmented and encapsulated using TCP or UDP headers.
+- Logs often show source and destination port, TCP flags (SYN, ACK, PSH), basic connection info,
+- But full packet captures reveal additional details like sequence numbers, acknowledgment numbers, window sizes
+- These fields are important for detecting attacks like session hijacking; for example a sudden jump in TCP sequence numbers may indicate a malicious packet injection attempt.
+
+- Key Things We Can Observe
+  - TCP 3-way handshake behavior
+  - Port usage patterns
+  - Suspicious flag combinations
+  - Sequence number anomalies
+
+>[!CAUTION]
+> **A large, unexpected jump in TCP sequence numbers can signal session injection or hijacking attempts.**
+>
+
+### Internet Layer
+
+- This layer adds the IP header.
+- Logs usually include source IP, destination IP, TTL (Time To Live)
+- However, full packet inspection reveals fragment offset, total length, fragmentation flags
+- These are essential when detecting fragmentation attacks, such as overlapping fragments used to bypass IDS systems.
+
+- Key Things We Can Observe
+  - IP communication paths
+  - Fragmentation behavior
+  - TTL anomalies
+  - Suspicious packet splitting
+
+- Overlapping IP fragments can be used to evade detection systems, only full packet inspection reveals these manipulation attempts.
+
+## Link Layer
+
+- At this layer, packets receive MAC addressing information.
+- Logs usually show source MAC and destination MAC
+- But full captures help detect ARP poisoning, MAC spoofing, duplicate MAC usage across interfaces, excessive gratuitous ARP traffic
+
+- For example in an ARP poisoning attack, one device may repeatedly claim to own multiple IP addresses using the same MAC address.
+
+- Key Things We Can Observe
+  - MAC address mappings
+  - ARP request and reply behavior
+  - Spoofed MAC addresses
+
+>[!CAUTION]
+> If one MAC address keeps claiming multiple IPs, you may be seeing ARP poisoning in action.
+
+Each TCP/IP layer gives us different visibility into network behavior. Logs only provide partial insight, while packet captures reveal the complete picture.
+
+- Understanding what can be observed at every layer allows analysts to detect hidden attacks, investigate suspicious behavior, identify evasion techniques, validate security alerts
+
+- Network traffic analysis isn’t just about watching traffic — it’s about understanding how every layer contributes to the full story.
+
 ---  
 ><details><summary>❓Look at the HTTP example in the task and answer the following question: What is the size of the ZIP attachment included in the HTTP response? Note down the answer in bytes.</summary>10485760</details>
 ---  
