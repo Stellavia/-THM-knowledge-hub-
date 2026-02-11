@@ -24,6 +24,37 @@ NTA is more than just using tools like Wireshark — it combines log correlation
 
 ## What is the Purpose of Network Traffic Analysis
 
+- **Network Traffic Analysis (NTA) helps** security teams **understand what is happening inside and outside a network**.
+- Logs alone often don’t provide enough detail to determine whether activity is malicious.
+- By inspecting actual network traffic content, analysts can uncover hidden threats such as command-and-control (C2) communication or data exfiltration.
+
+- Basic logs (like DNS logs from a firewall) show metadata such as source IP, queried domain, query type, and timestamps.
+- However, they usually do not show the actual content of the communication.
+
+<img width="910" height="121" alt="image" src="https://github.com/user-attachments/assets/13c7bd7d-0605-4cac-a828-6a1fa2a51633" />
+
+
+- For example, repeated DNS queries to the same domain with different subdomains may indicate **DNS tunneling** or **beaconing**.
+- By capturing and inspecting packets, analysts can examine DNS responses and detect hidden data or encoded C2 commands (such as suspicious TXT records).
+- This deeper inspection allows analysts to confirm whether the activity is malicious.
+
+- The packet capture fragment below shows the content of a DNS reply that contains C2 commands:
+<img width="555" height="318" alt="image" src="https://github.com/user-attachments/assets/732aebfb-4f66-4a3f-ace5-059d3e53de0a" />
+
+- Logs provide limited visibility — mostly metadata, not full content.
+- Repeated or unusual DNS queries may indicate tunneling or beaconing.
+- Packet inspection reveals the actual content of communication.
+- NTA helps detect threats like data exfiltration, malware downloads, and lateral movement.
+- SOC analysts use NTA to validate alerts and reconstruct attacks.
+
+>[!TIP]
+>Always compare activity against a network baseline — abnormal spikes in DNS or HTTP traffic often signal compromise. <br>
+>DNS TXT records are commonly abused for C2 communication. <br>
+>If logs raise suspicion, move to packet-level analysis to confirm what’s really happening.
+>
+
+&nbsp;
+
 ---  
 ><details><summary>❓What is the name of the technique used to smuggle C2 commands via DNS?</summary>DNS tunneling</details>
 ---
