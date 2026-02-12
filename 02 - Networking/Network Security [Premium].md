@@ -2,6 +2,11 @@
 
 ## 🏷️ **Topic:** Learn about network security, understand attack methodology, and practice hacking into a target server. ##
 
+1. [Introduction](#introduction) <br>
+2. [Methodology](#methodology) <br>
+3. [Practical Example of Network Security](#practical-example-of-network-security) <br>
+
+   
 # 📚 Study Notes #
 
 
