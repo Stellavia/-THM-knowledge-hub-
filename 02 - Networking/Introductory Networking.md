@@ -2,7 +2,7 @@
 
 ## 🏷️ An introduction to networking theory and basic networking tools
 
-1.[The OSI Model: An Overview](##The-OSI-Model:-An-Overview)
+1.[The OSI Model: An Overview](#The-OSI-Model-An-Overview)
 # 📚 Study Notes 
 
 
