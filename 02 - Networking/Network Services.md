@@ -2,6 +2,17 @@
 
 ## 🏷️ Learn about, then enumerate and exploit a variety of network services and misconfigurations.
 
+1. [Understanding SMB](#Understanding-SMB)<br>
+2. [Enumerating SMB](#Enumerating-SMB)<br>
+3. [Exploiting SMB](#Exploiting-SMB)<br>
+4. [Understanding Telnet](#Understanding-Telnet)<br>
+5. [Enumerating Telnet](#Enumerating-telnet)<br>
+6. [Exploiting Telnet](#Exploiting-Telnet)<br>
+7. [Understanding FTP](#Understanding-ftp)<br>
+8. [Enumerating FTP](#Enumerating-ftp)<br>
+9. [Exploiting FTP](#Exploiting-ftp)<br>
+
+
 # 📚 Study Notes 
 
 
