@@ -3,6 +3,9 @@
 ## 🏷️ An introduction to networking theory and basic networking tools
 
 1.[The OSI Model: An Overview](#The-OSI-Model-An-Overview)
+2.[Encapsulation](#Encapsulation)
+3.[The TCP/IP Model](#The-TCP-IP-Model)
+
 # 📚 Study Notes 
 
 
