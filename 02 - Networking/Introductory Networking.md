@@ -8,7 +8,7 @@
 4. [Networking Tools: Ping](#networking-tools-ping) <br>
 5. [Networking Tools: Traceroute](#networking-tools-traceroute) <br>
 6. [Networking Tools: WHOIS](#networking-tools-whois) <br>
-7. [Networking Tools: Dig](networking-tools-dig) <br>
+7. [Networking Tools: Dig](#networking-tools-dig) <br>
 
 
 # 📚 Study Notes 
