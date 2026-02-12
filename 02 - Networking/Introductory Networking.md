@@ -2,9 +2,14 @@
 
 ## 🏷️ An introduction to networking theory and basic networking tools
 
-1.[The OSI Model: An Overview](#The-OSI-Model-An-Overview) <br>
-2.[Encapsulation](#Encapsulation) <br>
-3.[The TCP/IP Model](#The-TCPIP-Model) <br>
+1. [The OSI Model: An Overview](#The-OSI-Model-An-Overview) <br>
+2. [Encapsulation](#Encapsulation) <br>
+3. [The TCP/IP Model](#The-TCPIP-Model) <br>
+4. [Networking Tools: Ping](#networking-tools-ping) <br>
+5. [Networking Tools: Traceroute](#networking-tools-traceroute) <br>
+6. [Networking Tools: WHOIS](#networking-tools-whois) <br>
+7. [Networking Tools: Dig](networking-tools-dig) <br>
+
 
 # 📚 Study Notes 
 
