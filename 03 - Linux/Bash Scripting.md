@@ -4,12 +4,34 @@
 
 ## 🏷️ A Walkthrough room to teach you the basics of bash scripting
 
+1. [Our first simple bash scripts](#our-first-simple-bash-scripts)<br>
+2. [Variables](#variables)<br>
+2.1 [Debugging Bash scripts](#debugging-bash-scripts) <br>
+2.2 [Using multiple variables](#using-multiple-variables)<br>
+3. [Parameters](#parameters)<br>
+3.1 [Command-line parameters](#command-line-parameters)<br>
+3.2 [Interactive input with `read`](#interactive-input-with-read)<br>
+3.3 [Special Parameters in Bash](#special-parameters-in-bash)<br>
+4. [Arrays](#arrays)<br>
+4.1 [Indexes](#indexes)<br>
+4.2 [Creating an array in Bash](#creating-an-array-in-bash)<br>
+4.3 [Printing all items in an array](#printing-all-items-in-an-array)<br>
+4.4 [Accessing a single item](#accessing-a-single-item)<br>
+4.5 [Removing an item from an array](#removing-an-item-from-an-array)<br>
+4.6 [Changing (replacing) an item](#changing-replacing-an-item)<br>
+5. [Conditionals](#conditionals)<br>
+5.1 [if statement](#if-statement)<br>
+5.2 [Common comparison operators](#common-comparison-operators)<br>
+5.3 [Using parameters in conditionals](#using-parameters-in-conditionals)<br>
+5.4 [Checking files with conditionals](#checking-files-with-conditionals)<br>
+
+
 # 📚 Study Notes #
 
 - Bash is a scripting language that runs within the terminal on most Linux distros, as well as MacOS.
 - Shell scripts are a sequence of bash commands within a file, combined together to achieve more complex tasks than simple one-liner and are especially useful when it comes to automating sysadmin tasks such as backups.
 
-## Our first simple bash scripts
+# Our first simple bash scripts
 
 1. Every bash script needs a starting line
 - A bash script must start with this line: `#!/bin/bash`
@@ -45,7 +67,7 @@
 ><details><summary>❓What will the following script output to the screen, echo “BishBashBosh”</summary>BishBashBosh</details>
 ---
 
-## Variables
+# Variables
 
 - A variable is just a name that stores a value, so you can reuse it later.
 
@@ -60,7 +82,7 @@
 - Variables help you avoid repeating the same text over and over, change values in one place instead of many and/or make scripts easier to read and fix
 - Instead of typing "Jammy" everywhere, you just use $name.
 
-### Debugging Bash scripts
+## Debugging Bash scripts
 
 - Debugging means finding and fixing mistakes and Bash gives you tools to help.
 - From terminal you can run your script in debug mode by `bash -x file.sh`
@@ -74,7 +96,7 @@
 - Errors are easy to spot because you can see exactly where things break
 - This makes fixing mistakes much less frustrating.
 
-### Using multiple variables
+## Using multiple variables
 
 - You’re not limited to just one variable, e.g. `echo "Hello $name, welcome back!"`
 - Bash will replace $name with its value automatically.
@@ -90,20 +112,20 @@
 ><details><summary>❓How would you print out the country to the screen?</summary>echo $country</details>
 ---
 
-## Parameters
+# Parameters
 
 - Parameters are one of the most powerful parts of Bash.
 - They let your script receive information from the outside, instead of hard-coding everything.
 - Think of them as inputs to your script.
 
-### Command-line parameters
+## Command-line parameters
 
 - When you run a bash script, you can pass values to it like this: `./example.sh Alex`
 - Inside the script `$1` is first argument, `$2` second argument, `$3` third argument, and so on…
 <img width="898" height="452" alt="carbon-13" src="https://github.com/user-attachments/assets/f0e9bc01-200e-49c8-98fc-69c5d7be5713" />
 <img width="762" height="452" alt="carbon-14" src="https://github.com/user-attachments/assets/d94841b8-3008-4356-9496-b0ff4c5c5b0c" />
 
-### Interactive input with `read`
+## Interactive input with `read`
 - Sometimes you don’t want to pass values in the command line, instead, you want the script to ask the user for input.
 - You can do this with `read`:
 <img width="101" height="60" alt="image" src="https://github.com/user-attachments/assets/1289d9f8-49bf-48be-9755-245e050f94ce" />
@@ -111,7 +133,7 @@
 - When the script runs, it will pause and wait for you to type something.
 - Once you press Enter, it stores the input in the variable and prints it.
 
-### Special Parameters in Bash
+## Special Parameters in Bash
 
 |**Parameter**|**Description|**Usage**|
 |:---:|-----------------------------------------------|--------------------------------------------------------|
@@ -135,12 +157,12 @@
 ---
 
 
-## Arrays 
+# Arrays 
 - Arrays let you store multiple values inside one variable instead of creating lots of separate variables.
 - Think of an array like a numbered list.
 - Most commonly notated as `var[index_position]`
 
-### Indexes
+## Indexes
 - Every item in an array has a number called an index.
 - Indexes always start at 0
 - e.g.: `['car', 'train', 'bike', 'bus']`
@@ -155,25 +177,25 @@
   - Quotes are recommended
 - e.g.: `transport=('car' 'train' 'bike' 'bus')`
 
-### Printing all items in an array
+## Printing all items in an array
 
 - `echo "${transport[@]}"`
 - this means @ is all items and `${}` tells bash you're working with variable
 - output: `car train bike bus`
 
-### Accessing a single item
+## Accessing a single item
 
 - `echo "${transport[1]}"`
 - output: `train`
 - Because Index `1` = second item
 
-### Removing an item from an array
+## Removing an item from an array
 
 - To delete an item use `unset transport[1]`
 - This removes `train` from the array.
 - If you print the array again, it will be gone.
 
-### Changing (replacing) an item
+## Changing (replacing) an item
 
 - You can assign a new value to a specific index by `transport[1]='trainride'`
 - Now the array becomes `car trainride bike bus`
@@ -200,12 +222,12 @@
 ><details><summary>❓How could we insert a new value called toyota to replace tesla?</summary>cars[3]='toyota'</details>
 ---
 
-## Conditionals
+# Conditionals
 
 - A conditional means that “Only do this if something is true.”
 - Bash checks conditions using operators like `equal to`, `greater than`, `less than`
 
-### if statement
+## if statement
 
 - Every if statement in Bash follows this pattern:
 <img width="335" height="153" alt="image" src="https://github.com/user-attachments/assets/87670b15-90af-46d2-942c-b8deddd051b1" />
@@ -219,7 +241,7 @@ What’s happening:
   - `-eq` means “equal to”
   - Since 10 = 10, it prints: <img width="62" height="31" alt="image" src="https://github.com/user-attachments/assets/f694382a-ec90-4dcc-a6c7-8c228ac8f2dd" />
 
-### Common comparison operators
+## Common comparison operators
 
 |operator|definition|
 |:----:|----------------|
@@ -229,7 +251,7 @@ What’s happening:
 |-lt|less than|
 |-ge|greater than or equal to|
 
-### Using parameters in conditionals
+## Using parameters in conditionals
 
 - You can compare user input too.
 
@@ -237,7 +259,7 @@ What’s happening:
 - Run it like this: `./example.sh guessme` (output will be `They are equal)
 - Run it with something else like: `./example.sh hi` (output will be `They are not equal)
 
-### Checking files with conditionals
+## Checking files with conditionals
 
 - Conditionals are very powerful for working with files.
 - Two important file checks:
