@@ -50,7 +50,7 @@ Afterwards server returned the HTML with secret message:
 
 # I TRIED and I FAILED MANY TIMES
 
-- admin login endpoint with curl POST requests: `curl -s -X POST http://TARGET_IP:5000/cupids_secret_vault/administrator -d "username=test&password=test" | wc -c`
+- admin login endpoint with curl POST requests: `curl -s -X POST http://TARGET_IP:5000/SECRET_DIRECTORY_NAME/administrator -d "username=test&password=test" | wc -c`
 - tried robots.txt pwd
 - tried alternate usernames
 - tried SQL injection payloads
