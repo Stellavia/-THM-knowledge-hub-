@@ -2,19 +2,34 @@
 
 ## 🏷️ An introduction to networking theory and basic networking tools
 
-1. [The OSI Model: An Overview](#The-OSI-Model-An-Overview) <br>
-2. [Encapsulation](#Encapsulation) <br>
-3. [The TCP/IP Model](#The-TCPIP-Model) <br>
+1. [The OSI Model: An Overview](#the-osi-model-an-overview) <br>
+2. [Encapsulation](#encapsulation) <br>
+2.1 [Encapsulation Process (Data Naming)](#encapsulation-process-data-naming)<br>
+2.2 [De-encapsulation](#de-encapsulation)<br>
+3. [The TCP/IP Model](#the-tcpip-model) <br>
+3.1 [TCP/IP vs OSI Model](#tcpip-vs-osi-model)<br>
+3.2 [TCP/IP as a Protocol Suite](#tcpip-as-a-protocol-suite)<br>
+3.3 [TCP and the Three-Way Handshake](#tcp-and-the-three-way-handshake)<br>
+3.4 [History](#history)<br>
 4. [Networking Tools: Ping](#networking-tools-ping) <br>
+4.1 [How Ping Works](#how-ping-works)<br>
 5. [Networking Tools: Traceroute](#networking-tools-traceroute) <br>
-6. [Networking Tools: WHOIS](#networking-tools-whois) <br>
-7. [Networking Tools: Dig](#networking-tools-dig) <br>
+5.1 [What Traceroute Does](#what-traceroute-does)<br>
+5.2 [Protocol Differences](protocol-differences#)<br>
+5.3 [Ping vs Traceroute - Side-by-Side Comparison](#ping-vs-traceroute---side-by-side-comparison)<br>
+7. [Networking Tools: WHOIS](#networking-tools-whois) <br>
+7.1 [Installation Notes (Linux)](#installation-notes-linux)<br>
+8. [Networking Tools: Dig](#networking-tools-dig) <br>
+8.1 [What Is DNS?](#what-is-dns)<br>
+8.2 [How DNS Resolution Works](#how-dns-resolution-works)<br>
+8.3 [Dig: Manual DNS Queries](#dig-manual-dns-queries)<br>
+8.4 [Understanding Dig Output](#understanding-dig-output)<br>
 
-
+   
 # 📚 Study Notes 
 
 
-## The OSI Model: An Overview
+# The OSI Model: An Overview
 
 - The OSI (Open Systems Interconnection) Model is a standardised framework used to explain how computer networks function. While real-world networking mainly relies on the more compact TCP/IP model, the OSI model is widely used for learning because it breaks networking concepts down into clear, logical layers.
 
@@ -30,20 +45,20 @@
 |2|Data Link|
 |1|Physical|
 
-### Layer 7 – Application
+## Layer 7 – Application
 
 - The Application layer provides networking capabilities directly to applications running on a computer.
 - It acts as the interface that applications use to send data over a network.
 - This layer works almost exclusively with software applications.
 - Once data is ready, it is passed down to the presentation layer.
 
-### Layer 6 – Presentation
+## Layer 6 – Presentation
 
 - The Presentation layer receives data from the application layer and ensures it is in a standardised format that the receiving system can understand.
 - It is responsible for data translation, encryption and decryption, compression and decompression
 - After these transformations are complete, the data is passed to the session layer.
 
-### Layer 5 – Session
+## Layer 5 – Session
 
 - The Session layer is responsible for establishing, maintaining, and terminating communication sessions between two systems.
 - If a session cannot be established, an error is returned and communication stops.
@@ -51,7 +66,7 @@
 - Each session is unique, which allows multiple connections to exist at the same time without data getting mixed up (for example, opening multiple browser tabs simultaneously).
 - Once the session is established, data moves down to the transport layer.
 
-### Layer 4 – Transport
+## Layer 4 – Transport
 
 - The Transport layer plays a critical role in data transmission.
 - Its responsibilities include protocol selection
@@ -59,7 +74,7 @@
 
 - **Segmentation** - once a protocol is chosen, the transport layer splits data into smaller pieces - **Segments** (TCP) and **Datagrams** (UDP) - this makes data easier and more reliable to transmit.
 
-### Layer 3 – Network
+## Layer 3 – Network
 
 - The Network layer is responsible for determining where data needs to go and how to get it there.
 - It uses logical addressing, such as IP addresses
@@ -76,7 +91,7 @@
 
 - Although IP addresses identify where data should go logically, MAC addresses identify exactly which device should receive it on the local network.
 
-### Layer 1 – Physical
+## Layer 1 – Physical
 
 - The Physical layer deals directly with hardware and raw data transmission.
 - Converts binary data into electrical, optical, or radio signals
@@ -109,7 +124,7 @@
 ><details><summary>❓Which transport layer protocol would be best suited to transmit a live video?</summary>UDP</details>
 ---
 
-## Encapsulation
+# Encapsulation
 
 - Encapsulation is the process used to prepare data for transmission across a network.
 - As data moves down through the OSI layers, each layer adds its own information to the transmission.
@@ -128,7 +143,7 @@
 
 <img width="1718" height="822" alt="image" src="https://github.com/user-attachments/assets/bb6808b7-e21e-4474-8077-3c57cbfd0a6f" />
 
-### Encapsulation Process (Data Naming)
+## Encapsulation Process (Data Naming)
 
 - As data is encapsulated, it is referred to by different names at different stages of the OSI model:
 
@@ -142,7 +157,7 @@
 
 By the time the data is transmitted across the network, the frame has been broken down into bits.
 
-### De-encapsulation
+## De-encapsulation
 
 - When the destination computer receives the transmission, it performs the reverse process, starting at the Physical layer and moving upward through the OSI model.
 - At each layer the added headers and trailer are removed and the remaining data is passed up to the next layer
@@ -160,7 +175,7 @@ By the time the data is transmitted across the network, the frame has been broke
 ><details><summary>❓Does encapsulation provide an extra layer of security (Aye/Nay)?</summary>Aye</details>
 ---
 
-## The TCP/IP Model
+# The TCP/IP Model
 
 - The TCP/IP model is the foundation of real-world networking.
 - It is older than the OSI model and, while very similar in purpose, is more compact and practical.
@@ -179,7 +194,7 @@ While this interpretation is widely accepted, the official definition remains th
 >Both versions are considered valid. <br>
 >
 
-### TCP/IP vs OSI Model
+## TCP/IP vs OSI Model
 
 - Although the TCP/IP model is used in practice, the OSI model is still widely taught.
 - This is because the OSI model is more detailed and rigid, making it easier to understand the theory behind networking before moving on to real-world implementations.
@@ -190,14 +205,14 @@ While this interpretation is widely accepted, the official definition remains th
   - A header is added at each layer during encapsulation
   - Headers are removed in reverse order during de-encapsulation
 
-### TCP/IP as a Protocol Suite
+## TCP/IP as a Protocol Suite
 
 - TCP/IP is not just a layered model — it is a suite of protocols, meaning a collection of rules that define how data is transmitted across a network.
 - The model takes its name from two of the most important protocols **TCP** (Transmission Control Protocol) – controls reliable data transfer and **IP** (Internet Protocol) – controls packet addressing and routing
 
 - Many other protocols exist within the TCP/IP suite, which are typically covered in more advanced networking topics.
 
-### TCP and the Three-Way Handshake
+## TCP and the Three-Way Handshake
 
 - TCP is a connection-based protocol, meaning a stable connection must be established before any data is sent. This setup process is known as the three-way handshake.
 
@@ -208,7 +223,7 @@ While this interpretation is widely accepted, the official definition remains th
 
 - Once this handshake is complete a reliable connection is established, data can be transmitted safely, lost or corrupted data is re-sent, making the connection appear lossless
 
-### History
+## History
 
 - Originally, there was no standardisation in networking.
 - Different manufacturers used their own methods, which made systems incompatible with one another.
@@ -243,12 +258,12 @@ While this interpretation is widely accepted, the official definition remains th
 ><details><summary>❓What is the short name for "Acknowledgement" segment in the three-way handshake?</summary>ACK</details>
 ---
 
-## Networking Tools: Ping
+# Networking Tools: Ping
 
 - The `ping` command is used to test whether a connection to a remote host is possible.
 - Common use cases include checking connectivity to a website on the internet, verifying communication between devices on a local network, confirming whether a system is reachable and responding
 
-### How Ping Works
+## How Ping Works
 
 - `ping` operates using the **ICMP (Internet Control Message Protocol)**, which is part of the TCP/IP protocol suite.
 
@@ -277,7 +292,7 @@ While this interpretation is widely accepted, the official definition remains th
 ><details><summary>❓What switch would give you a more verbose output?</summary>-v</details>
 ---
 
-## Networking Tools: Traceroute
+# Networking Tools: Traceroute
 
 - `Traceroute` is a natural follow-up to the `ping` command.
 - While `ping` tells you whether a destination is reachable, `traceroute` **shows you how your request gets there**.
@@ -285,7 +300,7 @@ While this interpretation is widely accepted, the official definition remains th
 - It is used to **map the path that network traffic takes from your computer to a target machine**.
 
 
-### What Traceroute Does
+## What Traceroute Does
 
 - The internet is made up of countless interconnected routers, servers, and endpoints.
 - When you request data from a remote resource, your traffic does not travel directly — it passes through multiple intermediate systems along the way.
@@ -294,7 +309,7 @@ While this interpretation is widely accepted, the official definition remains th
 
 - Each hop represents a device (usually a router) that forwards your traffic closer to its final destination.
 
-### Protocol Differences
+## Protocol Differences
 
 - `Traceroute` behaves slightly differently depending on the operating system:
   - Windows (`tracert`) - uses ICMP, the same protocol used by `ping`, by default
@@ -302,7 +317,7 @@ While this interpretation is widely accepted, the official definition remains th
 
 - In both cases, the protocol used can be changed using command-line options.
 
-### Ping vs Traceroute – Side-by-Side Comparison
+## Ping vs Traceroute - Side-by-Side Comparison
 
 |Feature|ping|traceroute|
 |--------------------|-------------------------|---------------------------------------------------------------------|
@@ -333,7 +348,7 @@ While this interpretation is widely accepted, the official definition remains th
 >✅Solution: On Windows tracert uses ICMP which is the same protocol used by ping. ICMP operates at Network layer in the OSI model and Internet layer in the TCP/IP model.
 ---
 
-## Networking Tools: WHOIS
+# Networking Tools: WHOIS
 
 **Domain Names: The Human-Friendly Internet**
 
@@ -352,7 +367,7 @@ While this interpretation is widely accepted, the official definition remains th
 >In other regions, WHOIS results may reveal more information.
 >
 
-### Installation Notes (Linux)
+## Installation Notes (Linux)
 
 - On Debian-based systems, `WHOIS` may need to be installed manually by running ` sudo apt update && sudo apt-get install whois`
 
@@ -373,15 +388,15 @@ While this interpretation is widely accepted, the official definition remains th
 ><details><summary>❓What is the registered Tech Email for microsoft.com?</summary>msnhst@microsoft.com</details>
 ---
 
-## Networking Tools: Dig
+# Networking Tools: Dig
 
-### What Is DNS?
+## What Is DNS?
 
 - The **Domain Name System (DNS)** is a TCP/IP protocol that **converts domain names** (which humans use) **into IP addresses** (which computers understand).
 - For example: You type www.google.com, DNS resolves it to an IP address, your computer then connects to that IP address
 - This entire process happens automatically in the background whenever you visit a website.
 
-### How DNS Resolution Works
+## How DNS Resolution Works
 
 - When you request a website, your computer resolves the domain name in the following order:
 
@@ -420,7 +435,7 @@ While this interpretation is widely accepted, the official definition remains th
 - This server responds with the final IP address for the domain
 - Once this response is returned, your computer can connect to the website.
 
-### Dig: Manual DNS Queries
+## Dig: Manual DNS Queries
 
 - While DNS resolution usually happens automatically, it can be performed manually using the dig command.
 - `dig` is commonly pre-installed on Linux systems
@@ -431,7 +446,7 @@ While this interpretation is widely accepted, the official definition remains th
 <img width="616" height="366" alt="image" src="https://github.com/user-attachments/assets/9ccc0ab0-1f31-43e1-b258-6820f9ec8a1b" />
 
 
-### Understanding Dig Output
+## Understanding Dig Output
 
 - The output of dig contains a lot of information.
 - The most important section for basic usage is `ANSWER` section and `TTL` (Time To Live)
