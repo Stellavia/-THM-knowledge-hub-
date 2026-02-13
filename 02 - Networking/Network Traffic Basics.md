@@ -2,6 +2,18 @@
 
 ## 🏷️ Learn what network analysis is, why it is essential, how to collect network traffic and which tools are available
 
+
+1. [What is the Purpose of Network Traffic Analysis](#what-is-the-purpose-of-network-traffic-analysis)<br>
+2. [What Network Traffic can we observe?](#what-network-traffic-can-we-observe)<br>
+2.1 [Application Layer](#application-layer)<br>
+2.2 [Transport Layer](#transport-layer)<br>
+2.3 [Internet Layer](#internet-layer)<br>
+2.4 [Link Layer](#link-layer)<br>
+3. [Network Traffic Sources and Flows](#network-traffic-sources-and-flows)<br>
+3.1 [Traffic Sources](#traffic-sources)<br>
+3.2 [Traffic Flow Types](#traffic-flow-types)<br>
+5. [How can we observe Network Traffic?](#how-can-we-observe-network-traffic)<br>
+
 &nbsp;
 
 # 📚 Study Notes 
