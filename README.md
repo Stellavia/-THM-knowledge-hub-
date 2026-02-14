@@ -1,4 +1,4 @@
-This repository contains my notes and solutions from 370+ TryHackMe rooms.
+This repository contains my notes and solutions from 400+ TryHackMe rooms.
 
 ## 📚 Structure
 - Fundamentals
