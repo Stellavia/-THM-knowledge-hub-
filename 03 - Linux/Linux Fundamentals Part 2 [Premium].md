@@ -2,11 +2,27 @@
 
 ## 🏷️ Continue your learning Linux journey with part two. You will be learning how to log in to a Linux machine using SSH, how to advance your commands, file system interaction.
 
+1. [Introduction to Flags and Switches](#introduction-to-flags-and-switches)<br>
+2. [Filesystem Interaction Continued](#filesystem-interaction-continued)<br>
+3. [Permissions 101](#permissions-101)<br>
+4. [Common Directories](#common-directories)<br>
+
+
 # 📚 Study Notes 
 
 **== PAGE IN PROGRESS ==**
 
-## Introduction to Flags and Switches
+# Introduction to Flags and Switches
+
+&nbsp;
+
+
+
+
+
+
+
+&nbsp;
 
 ---  
 ><details><summary>❓What directional arrow key would we use to navigate down the manual page?</summary>down</details>
@@ -14,7 +30,21 @@
 ><details><summary>❓What flag would we use to display the output in a "human-readable" way?</summary>-h</details>
 ---
 
-## Filesystem Interaction Continued
+&nbsp;
+
+# Filesystem Interaction Continued
+
+&nbsp;
+
+
+
+
+
+
+
+
+
+&nbsp;
 
 ---  
 ><details><summary>❓How would you create the file named "newnote"?</summary>touch newnote</details>
@@ -26,7 +56,21 @@
 ><details><summary>❓What are the contents of this file?</summary>THM{**********}</details>
 ---
 
-## Permissions 101
+&nbsp;
+
+# Permissions 101
+
+&nbsp;
+
+
+
+
+
+
+
+
+
+&nbsp;
 
 ---  
 ><details><summary>❓On the deployable machine, who is the owner of "important"?</summary>user2</details>
@@ -36,7 +80,23 @@
 ><details><summary>❓Output the contents of "important", what is the flag?</summary>THM{**_*****}</details>
 ---
 
-## Common Directories
+&nbsp;
+
+# Common Directories
+
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;
 
 ---  
 ><details><summary>❓What is the directory path that would we expect logs to be stored in?</summary>/var/log</details>
@@ -45,3 +105,5 @@
 ---  
 ><details><summary>❓Name the home directory of the root user</summary>/root</details>
 ---
+
+&nbsp;
