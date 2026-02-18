@@ -2,10 +2,25 @@
 
 ## 🏷️ Begin learning the fundamentas of computer networking in this bite-sized and interactive module.
 
+1. [What is Networking?](#what-is-networking)<br>
+2. [What is the Internet?](#what-is-the-internet)<br>
+    2.1 [History of the Internet](#history-of-the-internet)<br>
+    2.2 [Structure of the Internet](#structure-of-the-internet)<br>
+3. [Identifying Devices on a Network](#identifying-devices-on-a-network)<br>
+    3.1 [Device Identification Analogy](#device-identification-analogy)<br>
+    3.2 [IP Addresses](#ip-addresses)<br>
+    3.3 [Public IP Address](#public-ip-address)<br>
+    3.4 [IPv4 vs IPv6](#ipv4-vs-ipv6)<br>
+    3.5 [MAC Addresses](#mac-addresses)<br>
+    3.6 [MAC Address Spoofing](#mac-address-spoofing)<br>
+    3.7 [MAC Filtering in Public Wi‑Fi](#mac-filtering-in-public-wifi)<br>
+4. [Ping (ICMP)](#ping-icmp)<br>
+
+
 # 📚 Study Notes 
 
 
-## What is Networking?
+# What is Networking?
 
 - At its most basic level, a network is simply things that are connected.
 
@@ -33,23 +48,30 @@
 - Because networks underpin so much of today’s infrastructure, understanding networking is essential in cybersecurity. 
 - Securing systems requires knowing how devices connect, communicate, and interact.
 
+&nbsp;
 
 ---  
 ><details><summary>❓What is the key term for devices that are connected together?</summary>Network</details>
 ---
 
-## What is the Internet?
+&nbsp;
+
+# What is the Internet?
 
 
 - The Internet is essentially **one giant network made up of many smaller networks connected together**.
 
-### History of the Internet
+&nbsp;
+
+## History of the Internet
 
 - Late 1960s: The **ARPANET project**, funded by the U.S. Department of Defense, created the first documented network
 - 1989: Tim Berners-Lee invented the World Wide Web (WWW), transforming the Internet into a global system for storing and sharing information
 - Since then, the Internet has become the vast, interconnected network we use today
 
-### Structure of the Internet
+&nbsp;
+
+## Structure of the Internet
 
 - The Internet is made up of private networks (smaller, individual networks) and public networks (networks connecting private networks — the Internet itself)
 
@@ -57,21 +79,29 @@
 > In short, a network can be private or public, with the Internet being the largest example of a public network.
 >
 
+&nbsp;
+
 ---  
 ><details><summary>❓Who invented the World Wide Web?</summary>Tim Berners-Lee</details>
 ---
 
-## Identifying Devices on a Network
+&nbsp;
+
+# Identifying Devices on a Network
 
 
 - For devices to communicate reliably on a network, they must be **identifiable**. Just like humans can be identified in more than one way, network devices also have two forms of identification.
 
-### Device Identification Analogy
+&nbsp;
+
+## Device Identification Analogy
 
 - Devices are similar to people where name is an IP Address (can change) and fingerprint is MAC Address (hardware-based, intended to be unique)
 - Both are used to identify devices, but they serve different purposes.
 
-### IP Addresses
+&nbsp;
+
+## IP Addresses
 
 - An **IP (Internet Protocol)** address identifies a device on a network for a period of time.
 - **Key Properties**:
@@ -80,8 +110,10 @@
     - Can change over time (dynamic assignment)
     - Cannot be used by more than one device at the same time within the same network
     - Follows standard networking protocols so devices can communicate consistently
+ 
+&nbsp;
 
-### Public IP Address
+## Public IP Address
 
 - Used to identify a network/device on the Internet
 - Assigned by an Internet Service Provider (ISP)
@@ -93,7 +125,11 @@
 > Traffic going out to the Internet appears to come from the same public IP
 > 
 
-### IPv4 vs IPv6
+&nbsp;
+
+## IPv4 vs IPv6
+
+&nbsp;
 
 **IPv4**
 
@@ -101,6 +137,8 @@
 - Uses 32-bit addressing
 - Supports about 4.29 billion addresses
 - Address shortage due to massive device growth
+
+&nbsp;
 
 **IPv6**
 
@@ -110,7 +148,9 @@
 - More efficient and modern design
 - Written in hexadecimal format
 
-### MAC Addresses
+&nbsp;
+
+## MAC Addresses
 
 - A **MAC (Media Access Control)** address identifies a device’s physical network interface.
 - **Key Properties**:
@@ -121,21 +161,29 @@
 
 - **Structure**: First half identifies the manufacturer and the second half is unique device identifier
 
-### MAC Address Spoofing
+&nbsp;
+
+## MAC Address Spoofing
 
 * Although MAC addresses are hardware-based, they can be spoofed (faked).
 - MAC Spoofing means, that device pretends to use another device’s MAC address, used in both testing and attacks and can bypass weak security systems
+
+&nbsp;
 
 >[!CAUTION]
 > If a firewall allows traffic from a specific MAC address (e.g., admin device), an attacker who spoofs that MAC address may be incorrectly trusted.
 >
 
-### MAC Filtering in Public Wi‑Fi
+&nbsp;
+
+## MAC Filtering in Public Wi‑Fi
 
 - Some public networks (cafes, hotels, guest Wi‑Fi) use MAC-based access control:
     - Access or speed is granted per MAC address
     - Payment may unlock access for one device only
     - Changing (spoofing) a MAC address can sometimes bypass these controls if poorly implemented
+
+&nbsp;
 
 ---  
 ><details><summary>❓What does the term "IP" stand for?</summary>Internet Protocol</details>
@@ -149,7 +197,9 @@
 ><details><summary>❓Deploy the interactive lab using the "View Site" button and spoof your MAC address to access the site. What is the flag?</summary>THM{***_**_*********}</details>
 ---
 
-## Ping (ICMP)
+&nbsp;
+
+# Ping (ICMP)
 
 
 - `Ping` is a basic network troubleshooting tool used to test connectivity between two devices.
@@ -168,7 +218,9 @@
 - Basic command: `ping <IP address or domain>`
 
 - Typical output shows packets sent/received, packet loss % and minimum / maximum / average response time (ms)
-  
+
+&nbsp;
+
 ---  
 ><details><summary>❓What protcol does ping use?</summary>ICMP</details>
 ---  
