@@ -2,13 +2,46 @@
 
 ## 🏷️ **Topic:** Continue learning about hardening
 
+1. [Chapter 3 Quiz](#chapter-3-quiz)<br>
+2. [GNU Privacy Guard](#gnu-privacy-guard)<br>
+  2.1 [Pretty Good Privacy (PGP)](#pretty-good-privacy-pgp)<br>
+  2.2 [How PGP encryption works (step by step)](#how-pgp-encryption-works-step-by-step)<br>
+  2.3 [GNU Privacy Guard (GPG)](#gnu-privacy-guard-gpg)<br>
+  2.4 [Creating GPG keys](#creating-gpg-keys)<br>
+3. [Encrypting Your Files](#encrypting-your-files)<br>
+  3.1 [Symmetric Encryption (password-based)](#symmetric-encryption-password-based)<br>
+  3.2 [Decrypting](#decrypting)<br>
+  3.3 [Asymmetric Encryption (key-based)](#asymmetric-encryption-key-based)<br>
+  3.4 [Sharing public keys](#sharing-public-keys)<br>
+  3.5 [Encrypting a file for someone else](#encrypting-a-file-for-someone-else)<br>
+  3.6 [Decrypting the file](#decrypting-the-file)<br>
+4. [SSH Protocol 1](#ssh-protocol-1)<br>
+5. [Creating an SSH Key Set](#creating-an-ssh-key-set)<br>
+  5.1 [Generating SSH keys](#generating-ssh-keys)<br>
+  5.2 [Copying your public key to a remote server](#copying-your-public-key-to-a-remote-server)<br>
+6. [Disable Username and Password SSH Login](#disable-username-and-password-ssh-login)<br>
+7. [X11 Forwarding and SSH Tunneling](#x11-forwarding-and-ssh-tunneling)<br>
+  7.1 [Turn off X11 Forwarding](#turn-off-x11-forwarding)<br>
+  7.2 [SSH Tunneling](#ssh-tunneling)<br>
+8. [Improving SSH Logging](#improving-ssh-logging)<br>
+9. [Chapter 4: Mandatory Access Control](#chapter-4-mandatory-access-control)<br>
+10. [Introduction to AppArmor](#introduction-to-apparmor)<br>
+  10.1 [AppArmor Configuration](#apparmor-configuration)<br>
+  10.2 [Adding More Profiles](#adding-more-profiles)<br>
+11. [AppArmor Command Line Utilities](#apparmor-command-line-utilities)<br>
+  11.1 [AppArmor Modes](#apparmor-modes)<br>
+  11.2 [AppArmor Command-Line Utilities](#apparmor-command-line-utilities)<br>
+12. [Chapter 4 Quiz](#chapter-4-quiz)<br>
+13. [Chapter 3: SSH and Encryption](#chapter-3-ssh-and-encryption)<br>
+
+
 # 📚 Study Notes #
 
 >[!NOTE]
 >All tasks for this room were completed using Ubuntu 18.04 LTS. That being said, pretty much everything that applies to 18.04 can apply to 20.04 as well. If you take what you learn out of this room and try to apply it in the real world for practice and fun and something does not work, be sure to check the documentation for what you are trying to do.
 >
 
-## Chapter 3 Quiz
+# Chapter 3 Quiz
 
 ---
 ><details><summary>❓Which SSH Protocol version is the most secure?</summary>2</details>
@@ -30,18 +63,18 @@
 ><details><summary>❓The SSH configuration options presented in this chapter were found in what file (full path)?</summary>/etc/ssh/sshd_config</details>
 ---
 
-## GNU Privacy Guard
+# GNU Privacy Guard
 
 <img width="636" height="261" alt="image" src="https://github.com/user-attachments/assets/6282cc87-bf17-42aa-83c6-1580a3e43c91" />
 
 - To understand GPG, you first need to understand PGP, the system it’s based on.
 
-### Pretty Good Privacy (PGP) 
+## Pretty Good Privacy (PGP) 
 
 - PGP is a system used to encrypt and decrypt emails and files.
 - It uses both types of encryption: **Asymmetric encryption** (public & private keys) and **Symmetric encryption** (a shared secret key)
 
-### How PGP encryption works (step by step)
+## How PGP encryption works (step by step)
 
 1. You write an email
 2. A random one-time session key is created (This is also called a nonce)
@@ -53,7 +86,7 @@ To decrypt:
 1. The recipient uses their private key to unlock the session key
 2. The session key is then used to decrypt the message back to readable text
 
-### GNU Privacy Guard (GPG)
+## GNU Privacy Guard (GPG)
 - GPG is an open-source implementation of the OpenPGP standard (which PGP follows).
 - In simple terms: GPG = the modern, free version of PGP
 - It’s widely trusted and heavily tested
@@ -66,7 +99,7 @@ To decrypt:
     
 - GPG also comes pre-installed on Ubuntu, which makes it very convenient.
 
-### Creating GPG keys
+## Creating GPG keys
 
 - Before using GPG, you must create a key pair: **Public key** (shared with others) and **Private key** (kept secret)
 - You generate keys with `gpg --gen-key`
@@ -80,14 +113,14 @@ To decrypt:
 
 - To check that your keys were created successfully use `gpg --list-keys`
 
-## Encrypting Your Files
+# Encrypting Your Files
 
 - GPG lets you encrypt files in two different ways:
   1. Symmetric encryption (one shared secret)
 . Asymmetric encryption (public + private keys)
 
 
-### 1. Symmetric Encryption (password-based)
+## 1. Symmetric Encryption (password-based)
 
 - Symmetric encryption uses one secret (a passphrase) to both encrypt the file and decrypt the file
 - Anyone who knows the passphrase can read the file.
@@ -102,12 +135,12 @@ To decrypt:
 > You should delete it using rm or shred if it’s sensitive
 >
 
-### Decrypting
+## Decrypting
 
 - To read the file use `gpg -d yourfile.txt.gpg`
 - You’ll be prompted for the passphrase, then the contents are displayed.
 
-### 2. Asymmetric Encryption (key-based)
+## 2. Asymmetric Encryption (key-based)
 
 - Asymmetric encryption uses two keys public key (encrypt) and private key (decrypt)
 
@@ -116,21 +149,21 @@ To decrypt:
 > Private keys must NEVER be shared
 >
 
-### 3. Sharing public keys
+## 3. Sharing public keys
 
 - To export a public key use `gpg --export -a -o publickey.asc`
 - This creates a text-based (ASCII armored) public key file.
 - To import someone else’s public key use `gpg --import publickey.asc`
 - Once imported, you can encrypt files for that person.
 
-### 4. Encrypting a file for someone else
+## 4. Encrypting a file for someone else
 
 Example
 - Nick encrypts a file like this: `gpg -e document.txt`
 - GPG will ask who the recipient is (based on imported public keys).
 - The encrypted file can be sent over email, chat, file sharing, even insecure channels
 
-### 5. Decrypting the file
+## 5. Decrypting the file
 - When Spooky decrypts: `gpg -d document.txt.gpg`
 - He is prompted for his private key passphrase.
 - After that, the file is decrypted and readable.
@@ -142,18 +175,18 @@ Example
 > Private keys are extremely sensitive — protect them at all costs
 >
 
-## SSH Protocol 1
+# SSH Protocol 1
 
 - In your `/etc/ssh/sshd_config` file, if you see `Protocol 1` or `Protocol 1, 2`
 - you need to disable Protocol version 1 asap.
 - It's available to run on Legacy machines but has been compromised and is no longer considered secure. SSH Protocol Version 2 is the current, more secure version of SSH.
 
-## Creating an SSH Key Set
+# Creating an SSH Key Set
 
 - Logging in with a password is less secure, hence SSH keys are the safest way to log in
 - Keys consist of a public key (shared) and a private key (kept secret)
 
-### Generating SSH keys
+## Generating SSH keys
 
 - as a user run `ssh-keygen`
 - Defaults to creating keys in `~/.ssh/`
@@ -164,7 +197,7 @@ Example
 >Public key = shared with the server
 >Private key = never share
 
-### Copying your public key to a remote server
+## Copying your public key to a remote server
 
 - Use `ssh-copy-id` (example: `ssh-copy-id username@remote-host`)
   - this automatically copies your public key to the server
@@ -190,22 +223,22 @@ Example
 >
 
 
-## Disable Username & Password SSH Login
+# Disable Username and Password SSH Login
 
 - Verify that your key exchange login works, otherwise you might lock yourself or other users out of the system.
 -  To do this, go to the `/etc/ssh/sshd_config` file and edit the line `PasswordAuthentication yes` to `PasswordAuthentication no`
 -  Afterwards restart SSH to apply changes by `sudo systemctl restart sshd`
 
-## X11 Forwarding & SSH Tunneling
+# X11 Forwarding and SSH Tunneling
 
 - You've connected to your workstation that has SSH enabled and you go about your work on the command-line. Everything is going great. But then you run into a problem. You need to run a program that only has a GUI.  How would you accomplish that via SSH?  That's what X11 Forwarding is for. X11 allows you to forward GUI application displays to your local environment (thought it has to have a GUI itself, right?). However, X11 has some flaws that make it dangerous to use. So let's look at turning it off.
 
-### Turn off X11 Forwarding
+## Turn off X11 Forwarding
 
 - To turn off X11 Forwarding you need to change setting in `sshd_config` specifically `X11 Forwarding yes` to `X11 Forwarding no`
 <img width="229" height="352" alt="image" src="https://github.com/user-attachments/assets/34a1dd7a-2986-46f4-b209-42761ae1e709" />
 
-### SSH Tunneling
+## SSH Tunneling
 
 - Lets someone forward network traffic through your SSH connection
 - Example: Access a blocked website by tunneling through your home SSH server
@@ -226,7 +259,7 @@ Example
 
 
 
-## Improving SSH Logging
+# Improving SSH Logging
 
 - A log file is created any time someone logs in with a Protocol that uses SSH.
 - By default, Ubuntu stores this log file in /var/log/auth.log
@@ -237,7 +270,7 @@ Example
 - INFO is the default setting.
 - To change the logging level go to `/etc/ssh/sshd_config` and look for the line `#LogLevel INFO` - uncomment that line and change it to any of the available levels.
 
-## Chapter 4: Mandatory Access Control
+# Chapter 4: Mandatory Access Control
 
 - MAC is a type of access control that defines who can access what on a system
 - Other types of access control include:
@@ -250,7 +283,7 @@ Example
 - Two popular tools are SELinux and AppArmor
 
 
-## Introduction to AppArmor
+# Introduction to AppArmor
 
 - Preinstalled on Ubuntu → no extra tools needed
 - Implements Mandatory Access Control (MAC)
@@ -262,7 +295,7 @@ Example
   - Supports custom profiles with simpler syntax than SELinux
   - Helps protect confidentiality and control access
 
-### AppArmor Configuration
+## AppArmor Configuration
 
 - Profiles directory: `/etc/apparmor.d
 - Contains all AppArmor profiles, e.g. `sbin.dhclient` and `usr.* files`
@@ -276,7 +309,7 @@ Example
 - `@{HOME}` variable allows rules to apply to any user’s home directory
 - Partial profiles are templates, not full profiles
 
-### Adding More Profiles
+## Adding More Profiles
 
 - You can install additional profiles with `sudo apt install apparmor-profiles apparmor-profiles-extra`
 
@@ -285,17 +318,17 @@ Example
 >
 
 
-## AppArmor Command Line Utilities
+# AppArmor Command Line Utilities
 
 - to check AppArmor status use `aa-status` - it shows whether AppArmor is loaded, the mode, and how many profiles are active.
 
-### AppArmor Modes
+## AppArmor Modes
 - **Enforce** actively enforces the rules in a profile
 - **Complain** allows disallowed actions but logs them
 - **Audit** enforces rules and logs both allowed and disallowed actions (logs in /var/log/audit/audit.log or system log)
 - Modes let you control how strict AppArmor is for different programs.
 
-### AppArmor Command-Line Utilities
+## AppArmor Command-Line Utilities
 
 - First, install the utilities by `sudo apt install apparmor-utils`
 - Then you can use:
@@ -312,7 +345,7 @@ Example
 >
 
 
-## Chapter 4 Quiz
+# Chapter 4 Quiz
 
 ---
 ><details><summary>❓Where are the AppArmor profiles located?</summary>/etc/apparmor.d</details>
@@ -326,7 +359,7 @@ Example
 ><details><summary>❓This command checks the status of AppArmor</summary>aa-status</details>
 ---
 
-## Chapter 3: SSH and Encryption
+# Chapter 3: SSH and Encryption
 
 - Encryption is essential for protecting data
 - You can encrypt almost anything: Personal files (documents, photos, videos), work or corporate documents, even entire hard drives
