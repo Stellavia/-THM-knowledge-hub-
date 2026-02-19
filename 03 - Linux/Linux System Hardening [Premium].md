@@ -1,8 +1,23 @@
 🔗 [Link to the Room](https://tryhackme.com/room/linuxsystemhardening)
 
-## 🏷️ **Topic:** Learn how to improve the security posture of your Linux systems. ##
+## 🏷️ **Topic:** Learn how to improve the security posture of your Linux systems. 
 
-# 📚 Study Notes #
+1. [Learning Objectives](#learning-objectives)<br>
+2. [Physical Security](#physical-security)<br>
+3. [Filesystem Partitioning and Encryption](#filesystem-partitioning-and-encryption)<br>
+4. [Firewall](#firewall)<br>
+  4.1 [Key points](#key-points)<br>
+5. [Remote Access](#remote-access)<br>
+  5.1 [Key protections](#key-protections)<br>
+6. [Securing User Accounts](#securing-user-accounts)<br>
+  6.1 [Best practices](#best-practices)<br>
+7. [Software and Services](#software-and-services)<br>
+8. [Update and Upgrade Policies](#update-and-upgrade-policies)<br>
+  8.1 [Key points](#key-points)<br>
+9. [Audit and Log Configuration](#audit-and-log-configuration)<br>
+  9.1 [Key takeaways](#key-takeaways)<br>
+
+# 📚 Study Notes 
 
 - Linux is a secure and cost-effective alternative to systems like Windows Server.
 - Hosting on Linux can save money on licensing and hardware.
@@ -10,7 +25,7 @@
 - Before using it, it’s important to secure the system, a process called **Linux hardening**.
 
 
-## Learning Objectives ##
+# Learning Objectives 
 
 - in this room you will learn how to **secure Linux** by focusing on:
   - Physical security
@@ -23,7 +38,9 @@
 
 <img width="595" height="382" alt="image" src="https://github.com/user-attachments/assets/ab5dd837-9e0f-4cd6-aa4b-82f83ad79670" />
 
-## Physical Security ##
+&nbsp;
+
+# Physical Security 
 
 - Physical security is the **first layer of defense**.
 - If an attacker can access your computer physically, they can steal disks or reset passwords, even on Linux.
@@ -53,19 +70,15 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓ What command can you use to create a password for the GRUB bootloader?</summary>grub2-mkpasswd-pbkdf2</details>
 >✅Solution: It's a tool that creates a secure password hash for GRUB, so only authorized users can change boot settings or access root.
-
 ---
-
 ><details><summary>❓What does PBKDF2 stand for? </summary>Password-Based Key Derivation Function 2</details>
-
 ---
 
 &nbsp;
 
-## Filesystem Partitioning and Encryption ##
+# Filesystem Partitioning and Encryption 
 
 - Disk **encryption protects data** if a device is stolen or physically accessed.
 - Encrypted data is unreadable without the correct password, making the disk useless to attackers.
@@ -92,24 +105,20 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓What does LUKS stand for?</summary>Linux Unified Key Setup</details>
-
 ---
-
 ><details><summary>❓We cannot attach external storage to the VM, so we have created a /home/tryhackme/secretvault.img file instead. It is encrypted with the password 2N9EdZYNkszEE3Ad. To access it, you need to open it using cryptsetup and then mount it to an empty directory, such as myvault. What is the flag in the secret vault?</summary>THM{****_***_***}</details>
 >✅Solution: Check the Question Hint provided by THM: `sudo cryptsetup open --type luks secretvault.img myvault && sudo mount /dev/mapper/myvault myvault/`. Then you can read your flag with command `cat task3_flag.txt`
-
 ---
 
 &nbsp;
 
-## Firewall ##
+# Firewall 
 
 - A firewall **controls** which **network traffic** can enter or leave a system, **protecting** it from attacks.
 - On Linux, firewalls are usually host-based, meaning they protect a single system, and they work by controlling traffic based on ports rather than processes.
 
-### Key points ###
+## Key points 
 - **Purpose**: Block unauthorized access, prevent clients from acting as servers, and control network traffic.
 - **Linux firewalls**: Modern Linux firewalls are stateful, tracking ongoing connections for better security.
 - **Netfilter**: The core packet-filtering system in the Linux kernel. Front-ends like iptables and nftables let you manage rules (**iptables** uses chains: INPUT, OUTPUT, FORWARD to allow or block traffic amd **nftables** is newer, more efficient, and also controls traffic through tables and chains).
@@ -133,23 +142,20 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓There is a firewall running on the Linux VM. It is allowing port 22 TCP as we can ssh into the machine. It is allowing another TCP port; what is it?</summary>12526</details>
 >✅Solution: Run command `sudo ufw status`
-
 ---
 ><details><summary>❓What is the allowed UDP port?</summary>14298</details>
 >✅Solution: It's in the previous output.
-
 ---
 
 &nbsp;
 
-## Remote Access ##
+# Remote Access 
 
 - Remote access lets you control a system from anywhere, but it also **exposes the system to attacks** like ***password sniffing***, guessing, or ***exploiting services***.
 
-### Key protections ###
+## Key protections 
 - **Use encrypted protocols** (e.g., SSH) instead of cleartext ones like Telnet.
 - **Prevent password guessing** by **disabling root login** (`PermitRootLogin no`) and by using strong passwords or, better, public key authentication.
 - **Set up SSH keys** by generating keys with `ssh-keygen -t rsa` and copy the public key to the server with `ssh-copy-id username@server`.
@@ -172,15 +178,13 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓What flag is hidden in the sshd_config file?  </summary>THM{******_***_*****}</details>
 >✅Solution: Use command: `cat /etc/ssh/sshd_config`
-
 ---
 
 &nbsp;
 
-## Securing User Accounts ##
+# Securing User Accounts 
 
 - The root account has full control over the system and should not be used for everyday work. Mistakes made as root can easily break the system.
 
@@ -188,7 +192,7 @@
 
 &nbsp;
 
-### Best practices ###
+## Best practices 
 
   - **Use sudo**: Create a normal user for admin tasks and add it to the `sudo` (Debian/Ubuntu) or `wheel` (RedHat/Fedora) group + Use sudo only when root privileges are needed.
   - **Disable root login**: After setting up a sudo user, disable direct root access by setting its shell to `/sbin/nologin`.
@@ -212,29 +216,21 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓One way to disable an account is to edit the `passwd` file and change the account’s shell. What is the suggested value to use for the shell?</summary>/sbin/nologin</details>
 >✅Solution: On Linux, each user account has a login shell defined in the /etc/passwd file. The shell determines what program runs when the user logs in. To disable an account without deleting it, you can change its shell to a special value that prevents interactive logins. This means the user or service cannot open a shell session, effectively disabling their ability to log in while keeping the account intact for system purposes instead of removing the account.
-
 ---
-
 ><details><summary>❓What is the name of the RedHat and Fedora systems sudoers group?</summary>wheel</details>
-
 ---
-
 ><details><summary>❓What is the name of the sudoers group on Debian and Ubuntu systems?</summary>sudo</details>
-
 ---
-
 ><details><summary>❓Other than tryhackme and ubuntu, what is the username that belongs to the sudoers group?</summary>blacksmith</details>
 >✅Solution: Run commmand: `cat /etc/group | grep sudo`
-
 ---
 
 &nbsp;
 
 
-## Software and Services ##
+# Software and Services 
 
 - Installing software and running services increases potential security risks.
   
@@ -247,19 +243,17 @@
 &nbsp;
 
 ---
-  
 ><details><summary>❓Besides FTPS, what is another secure replacement for TFTP and FTP? </summary>SFTP</details>
 >✅Solution: Secure File Transfer Protocol, a safe way to transfer files over SSH.
-
 ---
 
 &nbsp;
 
-## Update and Upgrade Policies ##
+# Update and Upgrade Policies 
 
 - Keeping your Linux system up-to-date is essential to protect against security vulnerabilities.
 
-### Key points ###
+## Key points 
   - **Updating packages**: Debian/Ubuntu: apt update + apt upgrade, RedHat/Fedora: dnf update (newer) or yum update (older)
   - **Use supported distributions**: Ubuntu LTS: Long Term Support releases (e.g., 20.04, 22.04) get 5 years of free updates, plus optional Extended Security Maintenance (ESM). RedHat Enterprise Linux: Up to 12 years of support in phases (full support, maintenance, extended life).
   - **Kernel updates**: Keep the kernel updated to fix critical vulnerabilities like “Dirty COW,” which can allow root access.
@@ -277,36 +271,23 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓What command would you use to update an older Red Hat system?</summary>yum update</details>
-
 ---
-
 ><details><summary>❓What command would you use to update a modern Fedora system?</summary>dnf update</details>
-
 ---
-
 ><details><summary>❓What two commands are required to update a Debian system? (Connect the two commands with &&.)</summary>apt update && apt upgrade</details>
-
 ---
-
 ><details><summary>❓What does yum stand for?</summary>Yellowdog Updater, Modified</details>
-
 ---
-
 ><details><summary>❓What does dnf stand for?</summary>Dandified YUM</details>
-
 ---
-
 ><details><summary>❓What flag is hidden in the sources.list file?</summary>THM{***_********_**********_******}</details>
 >✅Solution: Run `find / -type f -name sources.list 2>/dev/null` to find the file, then read it with `cat /etc/apt/sources.list` to read the flag.
-
 ---
 
 &nbsp;
 
-
-## Audit and Log Configuration ##
+# Audit and Log Configuration 
 
 - Most log files on Linux systems are stored in the `/var/log` directory.
 - Here are a few of the logs that can be referenced when looking into threats:
@@ -327,20 +308,16 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓What command can you use to display the last 15 lines of kern.log?</summary>tail -n 15 kern.log</details>
-
 ---
-
 ><details><summary>❓What command can you use to display the lines containing the word denied in the file secure?</summary>grep denied secure</details>
-
 ---
 
 &nbsp;
 
 - Hardening a Linux system is about following good practices to reduce risks.
 
-### Key takeaways ###
+## Key takeaways 
   - **Document host information** – Keep track of system details.
   - **Test changes first** – Apply and verify updates or configurations on a test system before production.
   - **Document all changes** – Record everything you do to maintain clarity and accountability.
