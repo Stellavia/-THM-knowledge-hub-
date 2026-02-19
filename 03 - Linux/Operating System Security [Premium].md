@@ -1,10 +1,15 @@
 🔗 [Link to the Room](https://tryhackme.com/room/operatingsystemsecurity)
 
-## 🏷️ **Topic:** This room introduces users to operating system security and demonstrates SSH authentication on Linux. ##
+## 🏷️ **Topic:** This room introduces users to operating system security and demonstrates SSH authentication on Linux. 
 
-# 📚 Study Notes #
+1. [Intro to Operating System Security](#intro-to-operating-system-security)<br>
+2. [Common Examples of OS Security](#common-examples-of-os-security)<br>
+3. [Practical Example of OS Security](#practical-example-of-os-security)<br>
+  3.1 [Step-by-Step OS Attack Chain](#step-by-step-os-attack-chain)<br>
 
-## Intro to Operating System Security ##
+# 📚 Study Notes 
+
+# Intro to Operating System Security 
 
 - An operating system (OS) is what makes a computer or phone usable. Hardware (CPU, memory, keyboard, screen, storage) can’t do anything on its own — the OS controls it and lets apps run.
 - Apps like browsers, messaging apps, and email cannot talk directly to hardware. They must go through the operating system, which sets the rules.
@@ -24,16 +29,14 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓Which of the following is not an operating system? AIX, Android, Chrome OS, Solaris, Thunderbird</summary>Thunderbird</details>
 >✅Solution: It's an e-mail client application.
-
 ---
 
 &nbsp;
 
 
-## Common Examples of OS Security ##
+# Common Examples of OS Security 
 
 - **Operating system security protects confidentiality** (who can see data), **integrity** (data can’t be changed) and **availability** (system is usable)
 
@@ -56,15 +59,13 @@
 &nbsp;
 
 ---
-
 ><details><summary>❓Which of the following is a strong password, in your opinion? iloveyou, 1q2w3e4r5t, LearnM00r, qwertyuiop  </summary>LearnM00r</details>
 >✅Solution: It uses uppercase, lowercase, numbers, it's not a common dictionary word, not a keyboard pattern and it's harder to guess or brute-force.
-
 ---
 
 &nbsp;
 
-## Practical Example of OS Security ##
+# Practical Example of OS Security 
 
 - This example shows how attackers break into a system using weak passwords.
   - An attacker finds a username, tries to guess the password, tries to gain admin/root access (Called root on Linux, Android, macOS, called administrator on Windows as these accounts have full system control)
@@ -73,7 +74,7 @@
   - using this weak password, the attacker successfully logs in.
   - after logging in, the attacker can view files, read sensitive information, look for other users (johnny, linda), try to guess their passwords too and also attempt privilege escalation.
 
-### Step-by-Step OS Attack Chain ###
+## Step-by-Step OS Attack Chain 
 
 1. **Information discovery**: Attacker finds a username (e.g. sammie); password is exposed on a sticky note (dragon).
 2. **Initial access**: Attacker connects remotely using SSH amd uses the guessed password to log in successfully.
@@ -87,23 +88,13 @@ or `su - johnny`
 &nbsp;
 
 ---
-
 ><details><summary>❓Based on the top 7 passwords, let’s try to find Johnny’s password. What is the password for the user johnny?</summary>abc123</details>
 >✅Solution: In the task 2 you have list of most common passwords. Check the 7th one.
-
 ---
-
 ><details><summary>❓Once you are logged in as Johnny, use the command `history` to check the commands that Johnny has typed. We expect Johnny to have mistakenly typed the root password instead of a command. What is the root password?</summary>happyHack!NG</details>
-
 ---
-
 ><details><summary>❓While logged in as Johnny, use the command `su - root` to switch to the root account. Display the contents of the file flag.txt in the root directory. What is the content of the file?</summary>THM{**********}</details>
 >✅Solution: Use command `cat /root/flag.txt`
-
 ---
 
-
-
-
-
-
+&nbsp;
