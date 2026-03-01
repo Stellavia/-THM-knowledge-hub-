@@ -7,6 +7,10 @@
   1.1 [Difference between Network Devices and Endpoint Devices](#difference-between-network-devices-and-endpoint-devices)<br>
 1.2 [Common Threats and Attack Vectors of Network Devices](#common-threats-and-attack-vectors-of-network-devices)<br>
 2. [Common Hardening Techniques](#common-hardening-techniques)<br>
+  2.1 [General Techniques](#general-techniques)<br>
+  2.2 [Importance of Secure Protocols](#importance-of-secure-protocols)<br>
+  2.3 [Removal/Blocking of Insecure Protocols](#removalblocking-of-insecure-protocols)<br>
+  2.4 [Implementation of Monitoring and Logging Controls](#implementation-of-monitoring-and-logging-controls)<br>
 3. [Hardening Virtual Private Networks](#hardening-virtual-private-networks)<br>
 4. [Hardening Routers, Switches and Firewalls](#hardening-routers-switches-and-firewalls)<br>
 5. [Hardening Routers, Switches and Firewalls - More Techniques](#hardening-routers-switches-and-firewalls---more-techniques)<br>
@@ -86,18 +90,49 @@ To protect **Confidentiality**, **Integrity**, and **Availability (CIA)**, we ne
 
 &nbsp;
 
+## General Techniques
+Hardening techniques are meant to reduce the attack surface of a system or network by removing unnecessary functionality, limiting access, and implementing various security controls. <br>
+Some standard methods are mentioned below:
+
+- **Updating & Patching**: Ensuring the latest version of the Operating System and underlying applications of all devices and systems and installing regular security patches is the core hardening measure. Outdated OS and applications contain vulnerabilities that attackers can exploit.
+- **Disabling unnecessary services & ports**: Turn off services and close ports that are not needed. This reduces entry points for attackers.
+- **Principle of Least Privilege (POLP)**: Restrict users and processes to only the minimum necessary permissions required to perform their functions.
+- **Logs Monitoring**: Implement a log monitoring system to monitor for unusual activity or security events.
+- **Backup regularly**: Take routine backups of systems and configurations as they can help recover from a security incident or system failure.
+- **Enforcing Strong Passwords**: Change default passwords. Use strong passwords (at least 10 characters) with lowercase, uppercase, numbers, and special characters. This protects against dictionary and brute-force attacks.
+- **Multi-Factor Authentication (MFA)**: Use two or more verification methods to access a system. E.g., something you know (password) and something you have (biometrics or a device).
 
 
+## Importance of Secure Protocols
+
+Secure protocols are important for network device hardening. They **protect against unauthorized access** and data breaches.
+
+They encrypt data sent between devices, so attackers cannot read or intercept it. They also help prevent man-in-the-middle attacks and other network attacks.
+
+By using secure protocols, only authorized users can access sensitive data and manage systems.
+
+**Common secure protocols**: HTTPS, SSH, SSL/TLS, IPsec
 
 
+## Removal/Blocking of Insecure Protocols 
 
+Besides using secure protocols, it is also important to remove or **block insecure protocols**. This reduces the attack surface and makes attacks harder.
 
+Some **protocols send data in plain text** (not encrypted), which attackers can easily read. E.g., **FTP, HTTP, Telnet**, and **SMTP**.
 
+Some protocols are secure by design (such as LDAP, RDP, and SIPS), but if they are configured incorrectly, attackers may still exploit them.
 
+## Implementation of Monitoring and Logging Controls
 
+Logging on network devices is important to detect attacks, troubleshoot problems, and meet regulations. <br> 
+It keeps a record of what happens on the device, which helps with forensics, auditing, and troubleshooting.
 
+Common logging techniques:
 
-
+- **Syslog**: Sends log messages to a central server for storage and analysis.
+- **SNMP**: Sends notifications (traps) to a management system when certain events happen.
+- **NetFlow**: Collects and analyzes network traffic for monitoring and security.
+- **Packet Captures**: Records network traffic for detailed analysis using tools like Wireshark.
 
 &nbsp;
 
