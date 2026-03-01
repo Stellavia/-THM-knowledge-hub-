@@ -12,6 +12,8 @@
   2.3 [Removal/Blocking of Insecure Protocols](#removalblocking-of-insecure-protocols)<br>
   2.4 [Implementation of Monitoring and Logging Controls](#implementation-of-monitoring-and-logging-controls)<br>
 3. [Hardening Virtual Private Networks](#hardening-virtual-private-networks)<br>
+  3.1 [Connecting to the Machine](#connecting-to-the-machine)<br>
+  3.2 [Standard Hardening Practices](#standard-hardening-practices)<br>
 4. [Hardening Routers, Switches and Firewalls](#hardening-routers-switches-and-firewalls)<br>
 5. [Hardening Routers, Switches and Firewalls - More Techniques](#hardening-routers-switches-and-firewalls---more-techniques)<br>
 6. [Important Tools for Network Monitoring](#important-tools-for-network-monitoring)<br>
@@ -148,17 +150,49 @@ Common logging techniques:
 
 &nbsp;
 
+**Virtual Private Networks (VPNs) are important for protecting data and privacy**, especially with remote work and online communication.
+
+Hardening VPNs means adding extra security to make them safer from cyberattacks. This includes multi-factor authentication (MFA) and strong encryption.
+
+These steps make it harder for hackers to access the network and help keep data safe, improving overall security and peace of mind.
+
+<img width="550" height="284" alt="image" src="https://github.com/user-attachments/assets/d84e515d-3aac-440f-925d-065776bd4f1a" />
 
 
+## Connecting to the Machine
 
+In this room we are using an Ubuntu machine with OpenVPN installed roughout the room. You can start the virtual machine by clicking Start Machine. The machine will start in a split-screen view. In case the VM is not visible, use the blue Show Split View button at the top-right of the page. Please wait 3-5 minutes to make sure the VM is fully booted.
 
+## Standard Hardening Practices
 
+**VPN servers have server-side and client-side settings in a config file**. Admins should understand and edit this file following best security practices.
 
+**Open the server config file**: `sudo nano /etc/openvpn/server/server.conf`
 
+**Save changes**: `Ctrl+O` → `Enter`, then `Ctrl+X` to exit
 
+**Restart OpenVPN service**: `sudo systemctl restart openvpn-server@server.service`
 
+### Key Hardening Practices:
 
+- **Use strong encryption**: Set a secure cipher in the config file (AES-128-CBC, AES-256-CBC, etc).<br>
+  - Configure the VPN gateway to use strong encryption to protect data in transit. The cipher directive in the config file can be used to select the encryption scheme.<br>
+  - The possible options for cipher include AES, Blowfish, Camellia, and more.
+  - E.g. AES-128-CBC mode means to use the AES encryption algorithm with a key size of 128-bit in Cipher Block Chaining (CBC) mode, as seen below. AES-256-CBC is typically considered one of the strongest cipher encryption nowadays.<br>
+<img width="469" height="276" alt="image" src="https://github.com/user-attachments/assets/92e2ed7a-c603-4c39-8441-3d3f187b5507" />
 
+- **Keep VPN software updated**: Regularly apply updates and security patches of the VPN gateway software. e.g. `sudo apt upgrade openvpn`
+
+- **Implement strong authentication**: Use secure hashing algorithms (SHA256, SHA512, etc.) with TLS.
+  - Config example: auth SHA256
+
+- **Change default settings**: Replace default usernames and passwords with unique ones to prevent unauthorized access.
+
+- **Enable Perfect Forward Secrecy (PFS)**: Generates new encryption keys for each session, making it harder for attackers to decrypt data.
+  - Enable with tls-crypt in the config file.
+  - Generate key: sudo openvpn --genkey --secret my.key
+
+- **Dedicated VPN users**: Create a specific user account/group with limited permissions to run the VPN server.
 
 
 &nbsp;
