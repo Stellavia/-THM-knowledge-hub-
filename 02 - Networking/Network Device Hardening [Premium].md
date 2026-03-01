@@ -4,6 +4,8 @@
 ## 🏷️Learn techniques for securing and protecting network devices from potential threats and attacks.
 
 1. [Common Threat and Attack Vectors](#common-threat-and-attack-vectors)<br>
+  1.1 [Difference between Network Devices and Endpoint Devices](#difference-between-network-devices-and-endpoint-devices)<br>
+1.2 [Common Threats and Attack Vectors of Network Devices](#common-threats-and-attack-vectors-of-network-devices)<br>
 2. [Common Hardening Techniques](#common-hardening-techniques)<br>
 3. [Hardening Virtual Private Networks](#hardening-virtual-private-networks)<br>
 4. [Hardening Routers, Switches and Firewalls](#hardening-routers-switches-and-firewalls)<br>
@@ -15,6 +17,9 @@
 # 📚 Study Notes #
 
 <!-- INTRODUCTION HERE -->
+Network devices are the basic parts that make modern networks work. They help send, receive, control, and protect data as it moves between computers and networks.
+
+There are different types of network devices. Some are very simple, like **hubs** and **repeaters**, which just **pass** **data** along. Others are more advanced, like **switches** and **routers**, which **direct traffic**. There are also devices that **balance traffic**, create **secure connections** (VPNs), and **protect networks** from attacks (intrusion prevention systems).
 
 &nbsp;
 
@@ -22,17 +27,50 @@
 
 &nbsp;
 
+## Difference between Network Devices and Endpoint Devices
+
+Before learning more, it’s important to understand the difference:
+
+- **Endpoint devices** are devices that send or receive data on a network.<br>
+Examples: laptops, desktops, smartphones, tablets, printers, servers, and IoT devices.<br>
+They are at the edge of the network and are used directly by people.
+
+- **Network devices** manage and control the flow of data between endpoint devices.<br>
+Examples: switches, routers, firewalls.<br>
+They direct, filter, and protect network traffic.
+
+&nbsp;
+
+>[!NOTE]
+> **Endpoints use the network.** <br>
+> **Network devices run and manage the network.**
+
+&nbsp;
+
+<img width="1140" height="449" alt="image" src="https://github.com/user-attachments/assets/7fc38e2e-bcc6-4d9b-ae48-d08cb777bc20" />
+
+## Common Threats and Attack Vectors of Network Devices
+
+Modern ICT networks have grown rapidly and connected the world, however, this growth has also increased cyber attacks.
+
+**Network devices are the backbone of these systems, so they must be secured.**
+
+To protect **Confidentiality**, **Integrity**, and **Availability (CIA)**, we need to apply security hardening to network devices.
+
+**Goals of security hardening:**
+- Prevent unauthorized access and attacks
+- Enforce access control policies
+- Stop data theft
+- Keep important systems available and running
 
 
-
-
-
-
-
-
-
-
-
+|Threat|Description|Attack Vector|
+|--------------------|----------------------------------|-----------------------------------------|
+|Unauthorised access|Gain unauthorised control of a network device, and then the complete network.|Password attacks (brute force, dictionary & hybrid), Exploit known vulnerabilities, e.g. RCE, Social Engineering/Phishing attack to trick network administrators into disclosing sensitive information such as usernames and passwords of devices|
+|Denial of Service (DoS)| Disruption of critical devices and services to make them unavailable to genuine users.| Flooding devices with fake requests, exploiting vulnerabilities in logical or resource handling, manipulating network packets|
+|Man-in-the-Middle Attacks|Intercept the network requests between two parties by masquerading as each other to steal sensitive information or alter/manipulate the requests.|ARP spoofing, DNS spoofing, Rogue access points|
+|Privilege escalation|Gaining higher-level privileges or rights to perform restricted actions, e.g. accessing sensitive information or executing malicious code.|Weak passwords or use of the same passwords for user and admin accounts, exploiting vulnerabilities, misconfigurations|
+|Bandwidth theft/ hotlinking|Linking a bandwidth-intensive resource (image or video) from an external website to its original website, without permission. This can cause increased traffic to the original website.|Scraping large volumes of data, DoS attacks, malware attacks|
 
 &nbsp;
 
